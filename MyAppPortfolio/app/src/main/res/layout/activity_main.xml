@@ -1,0 +1,67 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:gravity="center"
+        android:layout_gravity="center"
+
+        >
+        <TextView android:text="@string/nano_degree_apps" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/headerTextView"
+            android:textSize="@dimen/h1"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/h1_top_margin"
+            android:layout_marginBottom="@dimen/h1_bottom_margin"
+            android:textStyle="bold"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_below="@id/headerTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/spotifyBtn"
+                android:text="@string/app_spotify_streamer"
+                style="@style/button1"
+                />
+            <Button
+                android:id="@+id/scoresBtn"
+                android:text="@string/app_scores"
+                style="@style/button1"
+                />
+            <Button
+                android:id="@+id/libraryBtn"
+                android:text="@string/app_library"
+                style="@style/button1"
+                />
+            <Button
+                android:id="@+id/buildBtn"
+                android:text="@string/app_build_it_bigger"
+                style="@style/button1"
+                />
+            <Button
+                android:id="@+id/xyzBtn"
+                android:text="@string/app_xyz_reader"
+                style="@style/button1"
+                />
+            <Button
+                android:id="@+id/capstoneBtn"
+                android:text="@string/app_capstone"
+                style="@style/button1"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

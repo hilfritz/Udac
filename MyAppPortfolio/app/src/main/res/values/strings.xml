@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">My App Portfolio</string>
+    <string name="search_activity">Search Artist</string>
+    <string name="top_ten_tracks">Top 10 Tracks</string>
+
+
+
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="nano_degree_apps">My Nanodegree Apps</string>
+
+    <string name="app_spotify_streamer">SPOTIFY STREAMER</string>
+    <string name="app_scores">SCORES APP</string>
+    <string name="app_library">LIBRARY APP</string>
+    <string name="app_build_it_bigger">BUILD IT BIGGER</string>
+    <string name="app_xyz_reader">XYZ READER</string>
+    <string name="app_capstone">CAPSTONE: MY OWN APP</string>
+
+
+    <string name="this_button_will_lauch">This button will launch %s !</string>
+
+    <string name="enter_artist_name">Enter Artist name to search for an artist.</string>
+    <string name="title_activity_top_ten_tracks">Top 10</string>
+
+    <string name="no_top_tracks">Sorry but there are no top 10 tracks for %s.</string>
+    <string name="no_artist_found">Sorry but there are no search result for artist %s.</string>
+    <string name="loading_top_tracks">Looking for top tracks for artist %s.</string>
+    <string name="no_preview_url">Sorry but there is no available preview playback for %s.</string>
+    <string name="empty_min_sec">00:00</string>
+    <string name="buffering">Buffering...</string>
+    <string name="album_name_format">(<xliff id="albumName">%s</xliff>)</string>
+    <string name="index">index</string>
+    <string name="no_track_to_skip_to_previous">Sorry, no more track to skip to previous.</string>
+    <string name="no_track_to_skip_to_next">Sorry, no more track to skip to next.</string>
+    <string name="press_search_to_look_for_artist">Search for <xliff id="albumName">%s</xliff></string>
+    <string name="no_network">Please ensure that you are connected to a network with internet connection. </string>
+    <string name="no_internet">Please ensure that you are connected to the internet. </string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_music_player">Playing...</string>
+</resources>

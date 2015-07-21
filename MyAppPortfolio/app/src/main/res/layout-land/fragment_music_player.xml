@@ -1,0 +1,149 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="?android:attr/dividerHorizontal"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <ImageView
+                android:id="@+id/artworkImageView"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/music_player_icon_height"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_weight="3"
+                tools:background="#ff0000"
+
+                />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/loadingTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/buffering"
+                    android:textSize="@dimen/h4"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/trackNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/loadingTextView"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/h3"
+                    android:textStyle="bold"
+                    tools:text="Track Name" />
+
+                <TextView
+                    android:id="@+id/artistNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/trackNameTextView"
+
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/h3"
+                    tools:text="Artist name" />
+
+
+                <TextView
+                    android:id="@+id/albumNameTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/artistNameTextView"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="@dimen/h4"
+                    android:textStyle="italic"
+                    tools:text="Album name" />
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/albumNameTextView"
+                    android:layout_centerHorizontal="true" />
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/seekBar">
+
+                    <TextView
+                        android:id="@+id/leftTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_toLeftOf="@+id/rightTimeTextView"
+                        android:textSize="@dimen/p"
+                        tools:text="0:00" />
+
+                    <TextView
+                        android:id="@+id/rightTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/p"
+                        tools:text="5:00" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/relativeLayout2">
+
+                    <ImageButton
+                        android:id="@+id/seekLeftButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/button_skip_left" />
+
+                    <ImageButton
+                        android:id="@+id/playPauseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/button_play" />
+
+                    <ImageButton
+                        android:id="@+id/seekRightButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/button_skip_right" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/emptyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center" />
+
+    </RelativeLayout>
+</ScrollView>

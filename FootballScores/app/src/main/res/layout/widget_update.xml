@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:layout_height="match_parent"
+    android:id="@+id/mainRelativeLayout"
+    android:background="@android:color/background_dark">
+    <include
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/widget_header"
+        />
+  <!--  <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logo"
+                android:src="@drawable/ic_launcher"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:contentDescription="logo of the app"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/logo"
+                android:layout_toEndOf="@id/logo"
+                android:textSize="@dimen/TeamNames"
+                android:text="@string/app_name"
+                android:layout_centerInParent="true"
+                android:textDirection="locale"
+                android:textAlignment="viewStart"
+                android:gravity="start"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin"
+
+                android:textColor="@color/green14"
+                android:contentDescription="name of the app"
+                tools:text="header"
+                tools:textColor="#ffffff"
+                android:id="@+id/title"/>
+
+    </RelativeLayout>-->
+
+
+
+
+
+
+
+    <ImageView
+        android:id="@+id/separator"
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="@android:color/background_dark"
+        android:layout_below="@id/relativeLayout"
+        android:contentDescription="line separator"
+        />
+
+    <!-- ListView to be shown on widget -->
+    <ListView
+        android:id="@+id/listViewWidget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/separator"
+        android:contentDescription="listview for today's games"
+        />
+
+    <!-- Empty view is show if list items are empty -->
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/no_games_for_day"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/League"
+        android:contentDescription="empty text view for no game days"
+        android:visibility="gone" />
+</RelativeLayout>

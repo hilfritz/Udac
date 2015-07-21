@@ -1,0 +1,141 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relativeLayout"
+            android:gravity="center"
+            >
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/music_player_icon_height"
+                android:id="@+id/artworkImageView"
+                android:layout_centerHorizontal="true"
+                tools:background="#ff0000"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/loadingTextView"
+                android:layout_below="@id/artworkImageView"
+
+                android:textStyle="bold"
+                android:textSize="@dimen/h4"
+                android:layout_centerHorizontal="true"
+                android:text="@string/buffering"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/trackNameTextView"
+                android:layout_below="@id/loadingTextView"
+                tools:text="Track Name"
+                android:textStyle="bold"
+                android:textSize="@dimen/h3"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/h3"
+                android:layout_centerHorizontal="true"
+
+                tools:text="Artist name"
+                android:id="@+id/artistNameTextView"
+                android:layout_below="@id/trackNameTextView"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/albumNameTextView"
+                android:textSize="@dimen/h4"
+                tools:text="Album name"
+                android:layout_centerHorizontal="true"
+                android:textStyle="italic"
+                android:layout_below="@id/artistNameTextView"/>
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/albumNameTextView"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/seekBar"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/seekBar"
+                android:id="@+id/relativeLayout2"
+                android:paddingLeft="@dimen/vertical_margin_b"
+                android:paddingRight="@dimen/vertical_margin_b"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@+id/rightTimeTextView"
+                    tools:text="0:00"
+                    android:textSize="@dimen/p"
+                    android:id="@+id/leftTimeTextView"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    tools:text="5:00"
+                    android:textSize="@dimen/p"
+                    android:id="@+id/rightTimeTextView"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/relativeLayout2"
+                android:id="@+id/relativeLayout3">
+                <ImageButton
+                    android:id="@+id/seekLeftButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/button_skip_left"
+                    />
+                <ImageButton
+                    android:id="@+id/playPauseButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_play"
+                    android:layout_centerHorizontal="true"/>
+
+                <ImageButton
+                    android:id="@+id/seekRightButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_skip_right"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/emptyTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/item_listview_odd_selector"
+    android:focusable="false"
+    android:focusableInTouchMode="false"
+    android:clickable="true"
+    android:id="@+id/relativeLayout"
+    tools:context=".TopTenTracksActivity"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_width="@dimen/search_artist_icon_width"
+        android:layout_height="@dimen/search_artist_icon_height"
+        android:layout_centerVertical="true"
+        android:background="@drawable/music_album"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_centerVertical="true"
+        >
+        <TextView
+            android:id="@+id/trackNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/title_left_margin"
+            android:textSize="@dimen/h4"
+            android:textStyle="bold"
+            tools:text="Track name"
+            />
+
+        <TextView
+            android:id="@+id/albumNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/title_left_margin"
+            tools:text="Album name"
+            android:textSize="@dimen/p"
+            android:ellipsize="end"
+            />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/primary_light2"
+        android:layout_below="@id/imageView"
+        android:visibility="visible"
+
+        />
+</RelativeLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logo"
+        android:src="@drawable/ic_launcher"
+
+
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:contentDescription="logo of the app"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/logo"
+
+        android:textSize="@dimen/TeamNames"
+        android:text="@string/app_name"
+        android:layout_centerInParent="true"
+        android:textDirection="rtl"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:textColor="@color/green14"
+        android:contentDescription="name of the app"
+        tools:text="header"
+        tools:textColor="#000000"
+        android:id="@+id/title"/>
+</RelativeLayout>

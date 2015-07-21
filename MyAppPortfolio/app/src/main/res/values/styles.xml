@@ -1,0 +1,16 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MyTheme">
+
+
+    </style>
+    <style name="button1" parent="@style/Base.Widget.AppCompat.Button">
+
+<!--        <item name="android:background">@drawable/button_b1</item> -->
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+<!--        <item name="android:textSize">@dimen/p</item> -->
+
+    </style>
+</resources>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Alexandria</string>
+
+    <!-- Menu Items -->
+    <string name="books" translatable="false">List of Books</string>
+    <string name="scan" translatable="false">Scan/Add a Book</string>
+    <string name="about" translatable="false">About this App</string>
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="scan_button" translatable="false">Scan</string>
+    <string name="input_hint" translatable="false">Insert ISBN-13/10. Digits only.</string>
+    <string name="book_cover" translatable="false">Bookcover</string>
+
+    <string name="ok_button" translatable="false">Next</string>
+    <string name="cancel_button" translatable="false">Cancel</string>
+    <string name="scan_cancelled" translatable="false">Scan cancelled.</string>
+    <string name="not_found" translatable="false">No Book found</string>
+    <string name="search" translatable="false">Search</string>
+    <string name="delete" translatable="false">Delete Book</string>
+    <string name="pref_startScreen" translatable="false">Select Startscreen</string>
+    <string name="title_activity_settings" translatable="false">Settings</string>
+    <string name="action_share" translatable="false">Share</string>
+    <string name="back_button" translatable="false">Go back</string>
+    <string name="share_text" translatable="false">A must read book: </string>
+    <string name="qrcode_scannned" translatable="false">Code scanned. It will be available in your <b>List of Books</b> momentarily.</string>
+    <string name="no_network" translatable="false">Please ensure that you are connected to a network with internet connection. </string>
+    <string name="ensure_correct_barcode" translatable="false">Please ensure you are scanning the correct ISBN code.</string>
+    <string name="ensure_correct_barcode2" translatable="false">Correct ISBN code should start with 987</string>
+    <string name="incorrect_code" translatable="false">Sorry incorrect barcode, it is not a valid EAN-13 book barcode.</string>
+    <string name="book_not_found" translatable="false">Sorry there is no book saved with the detail of <xliff id="searchText">%s</xliff>.</string>
+    <string name="search_book_with_data" translatable="false">Search book with data of <b><xliff id="data">%s</xliff></b>...</string>
+    <string name="book_not_found2" translatable="false">Sorry there is no book saved with that kind of detail.</string>
+    <string name="empty_book" translatable="false">Sorry there are no books saved in the database.</string>
+    <string name="prepend_code" translatable="false">A correct ISBN code for books should start with the number <b>"978"</b>.
+        For your convenience we will be prepending your input with it when we search. </string>
+
+    <string name="no_internet" translatable="false">Please ensure that you are connected to the internet. </string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="about_text" translatable="false">This application gets book information from a Google API. All titles, cover images, and author information come from there.
+    The original version of this app was built by Sascha Jaschke, and a modified version is given to students in the Udacity Android Nanodegree program. </string>
+</resources>

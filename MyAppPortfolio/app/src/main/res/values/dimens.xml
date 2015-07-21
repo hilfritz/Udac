@@ -1,0 +1,26 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="vertical_margin_a">5dp</dimen>
+    <dimen name="vertical_margin_b">12dp</dimen>
+    <dimen name="vertical_margin_c">180dp</dimen>
+    <dimen name="vertical_margin_d">26dp</dimen>
+
+    <dimen name="h1">25sp</dimen>
+    <dimen name="h2">22sp</dimen>
+    <dimen name="h3">19sp</dimen>
+    <dimen name="h4">16sp</dimen>
+    <dimen name="p">12sp</dimen>
+
+    <dimen name="h1_bottom_margin">15dp</dimen>
+    <dimen name="h1_top_margin">15dp</dimen>
+
+
+    <dimen name="search_artist_icon_width">100dp</dimen>
+    <dimen name="search_artist_icon_height">@dimen/search_artist_icon_width</dimen>
+    <dimen name="music_player_icon_width">250dp</dimen>
+    <dimen name="music_player_icon_height">@dimen/music_player_icon_width</dimen>
+    <dimen name="title_left_margin">5dp</dimen>
+
+</resources>

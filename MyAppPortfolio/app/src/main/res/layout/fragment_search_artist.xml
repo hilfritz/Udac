@@ -1,0 +1,38 @@
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/artistSearchView"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:queryHint="@string/enter_artist_name"
+
+        android:layout_height="wrap_content"
+
+        ></android.support.v7.widget.SearchView>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/artistSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/artistRecyclerView"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+            >
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:id="@+id/emptyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/enter_artist_name"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
