@@ -1,0 +1,118 @@
+https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4334010279
+last viewed: https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4334010281
+
+
+Material Design Support Library
+
+
+1. create constants for  (in colors.xml)
+primary_light
+primary
+primary_dark
+accent
+
+Toolbar than Actionbar
+use @style/Theme.AppCompat.Light.NoActionBar as parent in AppTheme
+sample toolbar style
+<style name='toolbar' parent='@sty;e/Widget.AppCompat.Toolbar>
+ <item name='android:background'>?attr/colorPrimary</item>
+ <item name='popupTheme'>@style/Theme.AppCompat.Light</item>
+</style>
+
+
+to use this in the AppTheme, add the following line in the AppTheme to use
+toolbar style
+ <item name='toolbarStyle'>@style/Toolbar</item>
+
+
+In the layout, On the element android.support.v7.widget.Toolbar set the
+android:layout_height="?attr/actionBarSize"  //set the height to the default theme value
+
+
+Make the toolbar behave like an actionbar by doing
+Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+setSupportActionbar(toolbar);
+
+
+
+
+Text Size reference for
+android:textAppearance="@style/TextAppearance.AppCompat.*
+sample:
+@style/TextAppearance.AppCompat.Display4 = 122sp
+
+Material thickness is 1dp
+z axis = 1dp
+
+Vertical spaces 16dp
+- you can use spacerview
+Horizontal spaces  32dp
+
+
+CoordinatorLayout
+https://lab.getbase.com/introduction-to-coordinator-layout-on-android/
+- the super power of this layout is the ability to coordinate dependencies between child views.
+
+
+Elevation and Shadows
+- setting the elevation can set the shadow
+http://www.google.com/design/spec/what-is-material/elevation-shadows.html
+- elevation parameter on a viewgroup will also cast a shadow on the contained views
+android:elevation="@dimen/appbar_elevation"
+-https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4329500323
+
+Cardview
+-support library that casts a shadow
+-can replace Framelayout
+- a container that casts a shadow around a view
+- change in elevation of card, it casts a change in the shadow of the card
+- can also change the corners of the card to make round corner cards
+-https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4331460077
+app:cardElevation="16dp"
+app:cardCornerRadius="20dp"
+-doesnt clip contentviews or views inside it to corner of the cardview, but instead adds padding
+app:cardPreventCornerOverlaps="false"
+app:cardPreventCornerOverlaps="true" - wraps content views with a white box
+
+Parallax scrolling
+- scrolling in parallel
+- different layers of views scrolling at different speeds
+-https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4331460094
+
+
+Transition Animations
+See this:
+-https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4328770424
+-https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4328770428
+1. create a transition resource
+- contains <transitionSet>
+
+AppbarLayout
+-https://www.udacity.com/course/viewer#!/c-ud855-nd/l-3940839262/m-4328770432
+1. add design support library
+
+
+
+WIDGETS
+https://www.udacity.com/course/viewer#!/c-ud855-nd/l-4014768714/m-4279880018
+
+
+ANDROID DESIGN LIBRARY
+http://hmkcode.com/material-design-app-android-design-support-library-appcompat/
+http://inthecheesefactory.com/blog/android-design-support-library-codelab/en
+https://stackoverflow.com/questions/31031918/overlaying-content-above-appbarlayout-using-new-material-design
+http://blog.grafixartist.com/add-a-toolbar-elevation-on-pre-lollipop/
+https://mzgreen.github.io/2015/06/23/How-to-hideshow-Toolbar-when-list-is-scrolling(part3)/
+
+
+
+SCROLL Toolbar on listview scrollup
+https://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout
+https://stackoverflow.com/questions/25424818/how-to-make-a-actionbar-like-google-play-that-fades-in-when-scrolling
+
+ANIMATE FAB on scroll
+https://stackoverflow.com/questions/31381474/menu-and-autohide-floatingactionbutton-of-android-design-support-library
+https://guides.codepath.com/android/Floating-Action-Buttons
+
+TOOLBAR AMNIMATION
+http://blog.grafixartist.com/toolbar-animation-with-android-design-support-library/

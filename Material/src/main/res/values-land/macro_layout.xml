@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="list_item_imageview_height">200dp</dimen>
+
+    <!-- detail -->
+    <dimen name="detail_photo_height">224dp</dimen>
+    <dimen name="detail_inner_horiz_margin">112dp</dimen>
+</resources>
