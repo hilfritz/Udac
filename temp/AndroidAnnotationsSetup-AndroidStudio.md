@@ -1,8 +1,8 @@
 <article id="post-4" class="post-4 post type-post status-publish format-standard hentry category-android category-it">
 	
-	#AndroidAnnotations Setup on Android Studio
+	<h1>AndroidAnnotations Setup on Android Studio</h1>
 
-	<div class="entry-content">
+	
 		<p>Android today&nbsp;is&nbsp;the next big thing. But creating Android apps is not an easy task. It requires persistence, hard work and dedication.</p>
 <p>Today I am going to show you how to setup AndroidAnnotations library&nbsp;<a href="https://github.com/excilys/androidannotations">(link)</a>&nbsp;in AndroidStudio for your Android Project. It is a powerful library that really helps code very nice to read and very short. It comes with many features (like view injections, resource injections etc.) and&nbsp;simplifies your code. In my experience this is very handy, code updates or fixing bugs or adding new feature is very easy to implement and fix with the help of this library</p>
 <p>Note: This is done on the following date with the following versions of software: AndroidAnnotations (3.3.2), Android Studio (1.2.1)</p>
