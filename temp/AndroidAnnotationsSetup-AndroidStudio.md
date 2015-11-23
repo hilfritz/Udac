@@ -35,8 +35,8 @@ def AAVersion = 'X.X.X' //this correspond to the version of AndroidAnnotations y
 }</pre>
 <p>You are all set it is now all setup. You can now use the annotations and other features offered by AndroidAnnotations.</p>
 <p>Note: Everytime you add a new Activity/Service, do ‘Make’ <strong>first</strong> before you add them to Manifest.xml.</p>
-<p><a href="http://localhost/wordpress/wp-content/uploads/2015/11/make.png"><img class="alignnone size-medium wp-image-10" src="http://localhost/wordpress/wp-content/uploads/2015/11/make-300x172.png" alt="make" width="300" height="172"></a></p>
-<p>Here is the sample sources&nbsp;for this post:&nbsp;<a href="http://localhost/wordpress/wp-content/uploads/2015/11/androidannotations-setup-src.zip">androidannotations-setup-src</a></p>
+<p><a href="images/make1.png"><img class="alignnone size-medium wp-image-10" src="images/make1.png" alt="make" width="300" height="172"></a></p>
+<p>Here is the sample sources&nbsp;for this post:&nbsp;<a href="files/androidannotations-setup-src.zip">androidannotations-setup-src</a></p>
 	
 
 	

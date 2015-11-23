@@ -193,6 +193,6 @@ SearchArtistRequest searchArtistRequest = new SearchArtistRequest("eminem", Sear
     exclude 'META-INF/LICENSE.txt'
     exclude 'META-INF/NOTICE.txt'
 }</pre>
-<p>Here is the source code for this article: <a href="http://localhost/wordpress/wp-content/uploads/2015/11/androidannotations-robospice-retrofit.zip">androidannotations-robospice-retrofit</a></p>
+<p>Here is the source code for this article: <a href="files/androidannotations-robospice-retrofit.zip">androidannotations-robospice-retrofit</a></p>
 	
 </article>
