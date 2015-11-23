@@ -29,7 +29,7 @@ We will be using an online tool called&nbsp;<a href="http://www.jsonschema2pojo.
 <li>Use Commons-Lang3: check (optional)</li>
 </ul>
 <p>Like in the screenshot:</p>
-<p><a href="images/jsonstringtopojo.png"><img class="alignnone size-medium wp-image-32" src="http://localhost/wordpress/wp-content/uploads/2015/11/jsonschema2pojo-sample-300x255.png" alt="jsonschema2pojo-sample" width="300" height="255"></a></p>
+<p><a href="images/jsonstringtopojo.png"><img class="alignnone size-medium wp-image-32" src="images/jsonstringtopojo.png" alt="jsonschema2pojo-sample" width="300" height="255"></a></p>
 <p>Click the Jar button at the bottom to download the archive file that contains the classes generated from your JSON string.</p>
 <p>This is how the generated java class for the JSON string above:</p>
 <pre>package com.example;
