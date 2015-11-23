@@ -1,9 +1,9 @@
 <article id="post-4" class="post-4 post type-post status-publish format-standard hentry category-android category-it">
 	
-	<h1>AndroidAnnotations Setup on Android Studio</h1>
+	## AndroidAnnotations Setup on Android Studio
 
 	
-		<p>Android today&nbsp;is&nbsp;the next big thing. But creating Android apps is not an easy task. It requires persistence, hard work and dedication.</p>
+<p>Android today&nbsp;is&nbsp;the next big thing. But creating Android apps is not an easy task. It requires persistence, hard work and dedication.</p>
 <p>Today I am going to show you how to setup AndroidAnnotations library&nbsp;<a href="https://github.com/excilys/androidannotations">(link)</a>&nbsp;in AndroidStudio for your Android Project. It is a powerful library that really helps code very nice to read and very short. It comes with many features (like view injections, resource injections etc.) and&nbsp;simplifies your code. In my experience this is very handy, code updates or fixing bugs or adding new feature is very easy to implement and fix with the help of this library</p>
 <p>Note: This is done on the following date with the following versions of software: AndroidAnnotations (3.3.2), Android Studio (1.2.1)</p>
 <ol>
@@ -37,7 +37,7 @@ def AAVersion = 'X.X.X' //this correspond to the version of AndroidAnnotations y
 <p>Note: Everytime you add a new Activity/Service, do ‘Make’ <strong>first</strong> before you add them to Manifest.xml.</p>
 <p><a href="http://localhost/wordpress/wp-content/uploads/2015/11/make.png"><img class="alignnone size-medium wp-image-10" src="http://localhost/wordpress/wp-content/uploads/2015/11/make-300x172.png" alt="make" width="300" height="172"></a></p>
 <p>Here is the sample sources&nbsp;for this post:&nbsp;<a href="http://localhost/wordpress/wp-content/uploads/2015/11/androidannotations-setup-src.zip">androidannotations-setup-src</a></p>
-	</div><!-- .entry-content -->
+	
 
 	
 	
