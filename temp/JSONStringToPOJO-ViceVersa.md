@@ -1,10 +1,10 @@
 <article id="post-31" class="post-31 post type-post status-publish format-standard hentry category-it">
 	
 	
-		JSON String to POJO and vice versa
+## JSON String to POJO and vice versa
 
 	
-		<p>JSON String thru Rest api webservices is very common in mobile development especially in Android. The String is very light weight and is a good fit for mobile devices knowing the fact that some mobile devices are not very powerful in specifications and computing.</p>
+<p>JSON String thru Rest api webservices is very common in mobile development especially in Android. The String is very light weight and is a good fit for mobile devices knowing the fact that some mobile devices are not very powerful in specifications and computing.</p>
 <p>This will show you how to create a JAVA class from Json string using <strong>GSON</strong>.<br>
 We will be using an online tool called&nbsp;<a href="http://www.jsonschema2pojo.org/">jsonschema2pojo</a>.</p>
 <p><strong>Prerequisites:</strong></p>
