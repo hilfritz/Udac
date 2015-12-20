@@ -37,6 +37,10 @@ public class MusicPlayerActivity extends BaseActivity implements MusicPlayerFrag
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_music_player);
+    }
+
+    @Override
+    public void initialize() {
         showProgressInActionBar();
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.musicPlayer);
         musicPlayerFragment = (MusicPlayerFragment)fragment;
@@ -53,8 +57,6 @@ public class MusicPlayerActivity extends BaseActivity implements MusicPlayerFrag
         );
         musicPlayerFragment.setMediaPrepareListener(this);
     }
-
-
 
     public void showProgressInActionBar(){
         setProgressBarIndeterminateVisibility(true);

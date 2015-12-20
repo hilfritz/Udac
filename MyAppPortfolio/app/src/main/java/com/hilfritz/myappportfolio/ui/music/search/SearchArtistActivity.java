@@ -1,7 +1,6 @@
 package com.hilfritz.myappportfolio.ui.music.search;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.view.View;
 import com.hilfritz.myappportfolio.BaseActivity;
 import com.hilfritz.myappportfolio.R;
 import com.hilfritz.myappportfolio.ui.music.MusicPlayerAppUtil;
-import com.hilfritz.myappportfolio.ui.music.player.MusicPlayerActivity;
 import com.hilfritz.myappportfolio.ui.music.player.MusicPlayerDialogFragment;
 import com.hilfritz.myappportfolio.ui.music.topten.TopTenTracksFragment;
 import com.hilfritz.spotsl.wrapper.Image;
@@ -20,7 +18,7 @@ import com.hilfritz.spotsl.wrapper.Track;
 /**
  * Created by Hilfritz P. Camallere on 6/14/2015.
  */
-public class SearchArtistActivity extends BaseActivity implements SearchArtistFragment.Callbacks, TopTenTracksFragment.OnTrackItemClickListener, MusicPlayerDialogFragment.MediaPrepareListener {
+public class SearchArtistActivity extends BaseActivity implements SearchArtistFragment.SearchArtistFragmentCallbacks, TopTenTracksFragment.OnTrackItemClickListener, MusicPlayerDialogFragment.MediaPrepareListener {
     SearchArtistFragment searchArtistFragment;
     TopTenTracksFragment topTenTracksFragment;
     boolean twoPaneMode = false;
@@ -31,6 +29,10 @@ public class SearchArtistActivity extends BaseActivity implements SearchArtistFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+    }
+
+    @Override
+    public void initialize() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.searchFragment);
         searchArtistFragment = (SearchArtistFragment)fragment;
 
@@ -38,7 +40,6 @@ public class SearchArtistActivity extends BaseActivity implements SearchArtistFr
             twoPaneMode = true;
             searchArtistFragment.setSingleChoiceMode(true);
             searchArtistFragment.setCallback(this);
-
         }
     }
 

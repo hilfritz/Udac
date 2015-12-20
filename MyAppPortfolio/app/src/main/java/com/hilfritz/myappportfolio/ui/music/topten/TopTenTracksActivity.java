@@ -30,6 +30,10 @@ public class TopTenTracksActivity extends BaseActivity implements TopTenTracksFr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten_tracks);
         ButterKnife.inject(this);
+    }
+
+    @Override
+    public void initialize() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.topTracksFragment);
         topTenTracksFragment = (TopTenTracksFragment) fragment;
         topTenTracksFragment.setArtistName(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
@@ -38,7 +42,6 @@ public class TopTenTracksActivity extends BaseActivity implements TopTenTracksFr
         //topTenTracksFragment.populate();
         Log.d(TAG, "artistName=" + getIntent().getStringExtra(EXTRA_ARTIST_NAME) + " id=" + getIntent().getStringExtra(EXTRA_ARTIST_ID));
     }
-
 
     @Override
     public void showMusicPlayer(View view) {

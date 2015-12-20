@@ -72,20 +72,12 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
     @Override
     public void onResume() {
         super.onResume();
-        if (firstLoad){
-            firstLoad = false;
-            if (artistId!=null && artistId.isEmpty()==false)
-                populate();
-        }
+
     }
 
 
 
     public void populate(){
-        /*if (checkInternet()==false){
-            showErrorMessage(getString(R.string.no_internet));
-            return;
-        }*/
         showLoadingTopTracks();
         topTenTracksAdapter = new TopTenTracksAdapter(tracksList, TopTenTracksFragment.this);
         topTenTracksAdapter.setListItemClickListener(this);
@@ -104,6 +96,12 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
         if (onTrackItemClickListener !=null) {
             onTrackItemClickListener.showMusicPlayer(view);
         }
+    }
+
+    @Override
+    public void initialize() {
+        if (artistId!=null && artistId.isEmpty()==false)
+            populate();
     }
 
 

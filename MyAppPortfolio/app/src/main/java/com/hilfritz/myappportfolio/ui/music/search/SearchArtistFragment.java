@@ -16,7 +16,6 @@ import android.widget.TextView;
 import com.hilfritz.myappportfolio.BaseActivity;
 import com.hilfritz.myappportfolio.BaseFragment;
 import com.hilfritz.myappportfolio.R;
-import com.hilfritz.myappportfolio.tools.ConnectionUtil;
 import com.hilfritz.myappportfolio.tools.StringUtil;
 import com.hilfritz.myappportfolio.ui.music.topten.TopTenTracksActivity;
 import com.hilfritz.spotsl.requests.SearchArtistRequest;
@@ -57,7 +56,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
      * give items the 'activated' state when touched.
      */
     boolean singleChoiceMode = false;
-    Callbacks callback;
+    SearchArtistFragmentCallbacks callback;
 
 
     @Nullable
@@ -65,52 +64,6 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_artist,container, false);
         ButterKnife.inject(this, view);
-
-
-        searchArtistAdapter = new SearchArtistAdapter(artistList, SearchArtistFragment.this);
-        searchArtistAdapter.setListItemClickListener(this);
-        artistRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        artistRecyclerView.setAdapter(searchArtistAdapter);;
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                /*if (checkInternet()==false){
-                    return false;
-                }*/
-
-
-                artistList.clear();
-                searchArtistAdapter.notifyDataSetChanged();
-
-                emptyTextView.setText("Searching " + searchView.getQuery().toString() + " please wait... ");
-                //PERFORM SEARCH
-                SearchArtistRequest searchArtistRequest = new SearchArtistRequest(searchView.getQuery().toString(), SearchArtistRequest.DEFAULT_LIMIT * 10, SearchArtistRequest.DEFAULT_OFFSET);
-                ((BaseActivity) getActivity()).getSpiceManager().execute(searchArtistRequest, "search", DurationInMillis.ALWAYS_EXPIRED, new SearchRequestListener());
-                return true;
-            }
-
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                emptyTextView.setText(getString(R.string.press_search_to_look_for_artist, newText));
-                artistRecyclerView.setVisibility(View.GONE);
-                if (StringUtil.isNullOrEmptyString(newText)){
-                    if (callback!=null)
-                        callback.onSearchArtistListClear();
-                }
-                return true;
-            }
-        });
-        /*//ADD A LISTENER X BUTTON ON SEARCHVIEW
-        ImageView img = (ImageView)searchView.findViewById(R.id.search_close_btn);
-        img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callback.onSearchArtistListClear();
-            }
-        });*/
-
         return view;
     }
 
@@ -170,17 +123,42 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     }
 
     private void updateActiveSearchArtistIndexListItem(int index, View view){
-        /*
-        List<Item> tempList = new ArrayList<Item>();
-        tempList.addAll(artistList);
-        Log.i(TAG, "updateActiveSearchArtistIndexListItem() tempList.Size=" + tempList.size() + " aristList.Size=" + artistList.size());
-        artistList.clear();
-        artistList.addAll(tempList);
-        Log.i(TAG, "updateActiveSearchArtistIndexListItem() tempList.Size=" + tempList.size() + " aristList.Size=" + artistList.size());
-        searchArtistAdapter.notifyDataSetChanged();
-        */
         RelativeLayout relativeLayout = (RelativeLayout)view.findViewById(R.id.relativeLayout);
         relativeLayout.setBackgroundResource(R.drawable.item_listview_active);
+    }
+
+    @Override
+    public void initialize() {
+        searchArtistAdapter = new SearchArtistAdapter(artistList, SearchArtistFragment.this);
+        searchArtistAdapter.setListItemClickListener(this);
+        artistRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        artistRecyclerView.setAdapter(searchArtistAdapter);;
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                artistList.clear();
+                searchArtistAdapter.notifyDataSetChanged();
+
+                emptyTextView.setText("Searching " + searchView.getQuery().toString() + " please wait... ");
+                //PERFORM SEARCH
+                SearchArtistRequest searchArtistRequest = new SearchArtistRequest(searchView.getQuery().toString(), SearchArtistRequest.DEFAULT_LIMIT * 10, SearchArtistRequest.DEFAULT_OFFSET);
+                ((BaseActivity) getActivity()).getSpiceManager().execute(searchArtistRequest, "search", DurationInMillis.ALWAYS_EXPIRED, new SearchRequestListener());
+                return true;
+            }
+
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                emptyTextView.setText(getString(R.string.press_search_to_look_for_artist, newText));
+                artistRecyclerView.setVisibility(View.GONE);
+                if (StringUtil.isNullOrEmptyString(newText)){
+                    if (callback!=null)
+                        callback.onSearchArtistListClear();
+                }
+                return true;
+            }
+        });
     }
 
     private class SearchRequestListener implements RequestListener<SearchWrapper> {
@@ -223,7 +201,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
         emptyTextView.setVisibility(View.VISIBLE);
         artistRecyclerView.setVisibility(View.GONE);
     }
-    public void setCallback(Callbacks callback) {
+    public void setCallback(SearchArtistFragmentCallbacks callback) {
         this.callback = callback;
     }
 
@@ -248,7 +226,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     * implement. This mechanism allows activities to be notified of item
     * selections.
     */
-    public interface Callbacks {
+    public interface SearchArtistFragmentCallbacks {
         /**
          * Callback for when an item has been selected.
          */

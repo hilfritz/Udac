@@ -86,27 +86,7 @@ public class MusicPlayerFragment extends BaseFragment implements
         ButterKnife.inject(this, view);
         return view;
     }
-  /* @Override
-   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       FrameLayout frameLayout = new FrameLayout(getActivity());
-       frameLayout.removeAllViewsInLayout();
-       populateViewForOrientation(inflater, frameLayout);
-       return frameLayout;
-   }
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        LayoutInflater inflater = LayoutInflater.from(getActivity());
-        populateViewForOrientation(inflater, (ViewGroup) getView());
-    }
 
-    private void populateViewForOrientation(LayoutInflater inflater, ViewGroup viewGroup) {
-        viewGroup.removeAllViewsInLayout();
-        View subview = inflater.inflate(R.layout.fragment_music_player, viewGroup);
-        ButterKnife.inject(this, viewGroup);
-        // Find your buttons in subview, set up onclicks, set up callbacks to your parent fragment or activity here.
-    }*/
-    
     public void initialize(String artistName, String albumName, String artworkUrl, String trackName, String trackDuration, String trackPreviewUrl, int index) {
         this.artistName = artistName;
         this.albumName = albumName;
@@ -152,10 +132,11 @@ public class MusicPlayerFragment extends BaseFragment implements
     @Override
     public void onResume() {
         super.onResume();
-        if (firstLoad){
-            firstLoad = false;
-            populate();
-        }
+    }
+
+    @Override
+    public void initialize() {
+        populate();
     }
 
     private void initializeSeekBar(){
