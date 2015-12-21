@@ -17,7 +17,11 @@ import com.hilfritz.spotsl.wrapper.Image;
 import com.hilfritz.spotsl.wrapper.Item;
 import com.pkmmte.view.CircularImageView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Hilfritz P. Camallere on 6/14/2015.
@@ -29,6 +33,7 @@ public class SearchArtistAdapter extends RecyclerView.Adapter<SearchArtistAdapte
     private static final String TAG = "SearchArtistAdapter";
     private SearchArtistFragment searchArtistFragment;
     ListItemViewHolder.ListItemClickListener listItemClickListener;
+    ArrayList<Integer> selectedIndices = new ArrayList<Integer>();
 
     int activeIndex = -1;
 
@@ -72,10 +77,15 @@ public class SearchArtistAdapter extends RecyclerView.Adapter<SearchArtistAdapte
         listItemViewHolder.textView.setTag(R.string.index, position);
         List<Image> imageList = artistList.get(position).getImages();
         boolean imageLoaded = MusicPlayerAppUtil.loadImage(listItemViewHolder.imageView,imageList,searchArtistFragment.getActivity(), R.drawable.music_artist);
-        if (position == activeIndex){
-            listItemViewHolder.relativeLayout.setBackgroundResource(R.drawable.item_listview_active);
+
+        if (position%2==0){
+            listItemViewHolder.relativeLayout.setBackgroundResource(R.drawable.item_listview_even_selector);
         }else{
             listItemViewHolder.relativeLayout.setBackgroundResource(R.drawable.item_listview_odd_selector);
+        }
+
+        if (position == activeIndex){
+            listItemViewHolder.relativeLayout.setBackgroundResource(R.drawable.item_listview_active);
         }
     }
 
@@ -88,22 +98,19 @@ public class SearchArtistAdapter extends RecyclerView.Adapter<SearchArtistAdapte
 
 
     public static class ListItemViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
-        RelativeLayout relativeLayout;
-        ImageView imageView;
+        @Bind(R.id.relativeLayout) RelativeLayout relativeLayout;
+        @Bind(R.id.imageView)ImageView imageView;
         //CircularImageView imageView;
-        ImageView imageViewBackgroundA;
+        @Bind(R.id.imageViewBackgroundA)ImageView imageViewBackgroundA;
         ListItemClickListener mlistItemClickListener;
         int position;
 
-        TextView textView;
+        @Bind(R.id.textView) TextView textView;
         public ListItemViewHolder(int position, View itemView, ListItemClickListener listItemClickListener) {
             super(itemView);
             this.position = position;
+            ButterKnife.bind(this,itemView);
             mlistItemClickListener = listItemClickListener;
-            imageView = (ImageView)itemView.findViewById(R.id.imageView);
-            textView = (TextView)itemView.findViewById(R.id.textView);
-            relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
-            imageViewBackgroundA = (ImageView)itemView.findViewById(R.id.imageViewBackgroundA);
             itemView.setOnClickListener(this);
         }
 

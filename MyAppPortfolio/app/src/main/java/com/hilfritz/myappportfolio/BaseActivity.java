@@ -7,6 +7,8 @@ import com.hilfritz.myappportfolio.ui.BaseActivityInterface;
 import com.hilfritz.spotsl.network.SpotifySpiceService;
 import com.octo.android.robospice.SpiceManager;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by Hilfritz P. Camallere on 6/6/2015.
  */
@@ -52,7 +54,11 @@ public abstract class BaseActivity extends ActionBarActivity implements BaseActi
         spiceManager.shouldStop();
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
 
     public SpiceManager getSpiceManager() {
         return spiceManager;

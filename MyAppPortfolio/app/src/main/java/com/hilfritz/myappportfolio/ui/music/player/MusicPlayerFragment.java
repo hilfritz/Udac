@@ -25,8 +25,8 @@ import com.hilfritz.myappportfolio.ui.music.MusicPlayerAppUtil;
 
 import java.io.IOException;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 /**
@@ -45,21 +45,21 @@ public class MusicPlayerFragment extends BaseFragment implements
         MediaPlayer.OnCompletionListener{
 
 
-    @InjectView(R.id.emptyTextView) TextView emptyTextView;
-    @InjectView((R.id.relativeLayout)) RelativeLayout relativeLayout;
-    @InjectView((R.id.relativeLayout2)) RelativeLayout seekTimesLayout;
-    @InjectView((R.id.relativeLayout3)) RelativeLayout buttonsLayout;
-    @InjectView((R.id.artistNameTextView)) TextView artistNameTextView;
-    @InjectView((R.id.albumNameTextView)) TextView albumNameTextView;
-    @InjectView((R.id.artworkImageView)) ImageView artworkImageView;
-    @InjectView((R.id.trackNameTextView)) TextView trackNameTextView;
-    @InjectView((R.id.seekBar)) SeekBar seekbar;
-    @InjectView(R.id.leftTimeTextView) TextView leftTimeTextView;
-    @InjectView(R.id.rightTimeTextView) TextView rightTimeTextView;
-    @InjectView(R.id.loadingTextView) TextView loadingTextView;
-    @InjectView(R.id.seekLeftButton) ImageButton seekLeftButton;
-    @InjectView(R.id.seekRightButton) ImageButton seekRightButton;
-    @InjectView(R.id.playPauseButton) ImageButton playPauseButton;
+    @Bind(R.id.emptyTextView) TextView emptyTextView;
+    @Bind((R.id.relativeLayout)) RelativeLayout relativeLayout;
+    @Bind((R.id.relativeLayout2)) RelativeLayout seekTimesLayout;
+    @Bind((R.id.relativeLayout3)) RelativeLayout buttonsLayout;
+    @Bind((R.id.artistNameTextView)) TextView artistNameTextView;
+    @Bind((R.id.albumNameTextView)) TextView albumNameTextView;
+    @Bind((R.id.artworkImageView)) ImageView artworkImageView;
+    @Bind((R.id.trackNameTextView)) TextView trackNameTextView;
+    @Bind((R.id.seekBar)) SeekBar seekbar;
+    @Bind(R.id.leftTimeTextView) TextView leftTimeTextView;
+    @Bind(R.id.rightTimeTextView) TextView rightTimeTextView;
+    @Bind(R.id.loadingTextView) TextView loadingTextView;
+    @Bind(R.id.seekLeftButton) ImageButton seekLeftButton;
+    @Bind(R.id.seekRightButton) ImageButton seekRightButton;
+    @Bind(R.id.playPauseButton) ImageButton playPauseButton;
 
 
     public static final int SPOTIFY_PREVIEW_DURATION = 30000; //30 seconds
@@ -83,7 +83,7 @@ public class MusicPlayerFragment extends BaseFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music_player, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 

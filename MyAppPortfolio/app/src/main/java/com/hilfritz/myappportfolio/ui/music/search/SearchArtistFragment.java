@@ -28,8 +28,8 @@ import com.octo.android.robospice.request.listener.RequestListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 /**
@@ -37,13 +37,13 @@ import butterknife.InjectView;
  */
 public class SearchArtistFragment extends BaseFragment implements SearchArtistAdapter.ListItemViewHolder.ListItemClickListener {
     private static final String TAG = "SearchArtistFragment";
-    @InjectView(R.id.artistRecyclerView)
+    @Bind(R.id.artistRecyclerView)
     RecyclerView artistRecyclerView;
 
-    @InjectView(R.id.artistSearchView)
+    @Bind(R.id.artistSearchView)
     SearchView searchView;
 
-    @InjectView(R.id.emptyTextView)
+    @Bind(R.id.emptyTextView)
     TextView emptyTextView;
 
     List<Item> artistList = new ArrayList<Item>();
@@ -63,7 +63,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_artist,container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         return view;
     }
 

@@ -29,7 +29,7 @@ public class TopTenTracksActivity extends BaseActivity implements TopTenTracksFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_ten_tracks);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
     }
 
     @Override

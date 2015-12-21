@@ -21,17 +21,17 @@ import com.octo.android.robospice.request.listener.RequestListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 
 public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAdapter.TopTrackListItemViewHolder.ListItemClickListener {
     private static final String TAG = "TopTenTracksFragment";
 
-    @InjectView(R.id.recyclerView)
+    @Bind(R.id.recyclerView)
     RecyclerView topTracksRecyclerView;
 
-    @InjectView(R.id.emptyTextView)
+    @Bind(R.id.emptyTextView)
     TextView emptyTextView;
 
     String artistId;
@@ -58,7 +58,7 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_top_ten_music, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
 
         return view;
     }

@@ -19,6 +19,9 @@ import com.hilfritz.spotsl.wrapper.Track;
 
 import java.util.List;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 /**
  * Created by Hilfritz P. Camallere on 6/16/2015.
  */
@@ -68,20 +71,17 @@ public class TopTenTracksAdapter extends RecyclerView.Adapter<TopTenTracksAdapte
 
     public static class TopTrackListItemViewHolder extends  RecyclerView.ViewHolder implements View.OnClickListener{
         private static final String TAG = "TopTrackListItemViewHolder";
-        RelativeLayout relativeLayout;
-        ImageView imageView;
-        TextView trackName;
+        @Bind(R.id.relativeLayout) RelativeLayout relativeLayout;
+        @Bind(R.id.imageView) ImageView imageView;
+        @Bind(R.id.trackNameTextView) TextView trackName;
         ListItemClickListener mlistItemClickListener;
 
 
-        TextView albumName;
+        @Bind(R.id.albumNameTextView) TextView albumName;
         public TopTrackListItemViewHolder(View itemView, ListItemClickListener listItemClickListener) {
             super(itemView);
             mlistItemClickListener = listItemClickListener;
-            imageView = (ImageView)itemView.findViewById(R.id.imageView);
-            trackName = (TextView)itemView.findViewById(R.id.trackNameTextView);
-            albumName = (TextView)itemView.findViewById(R.id.albumNameTextView);
-            relativeLayout = (RelativeLayout)itemView.findViewById(R.id.relativeLayout);
+            ButterKnife.bind(this,itemView);
             itemView.setOnClickListener(this);
         }
 
