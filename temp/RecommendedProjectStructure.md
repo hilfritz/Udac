@@ -10,7 +10,7 @@ Basic useful feature list:
 
 I'm no good at writing sample / filler text, so go write something yourself.
 
-Look, a list!
+Look, a list!s
 
  * foo
  * bar
