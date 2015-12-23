@@ -137,6 +137,4 @@ public class TopTenTracksActivity extends BaseActivity implements TopTenTracksFr
         }
 
     }
-
-
 }
