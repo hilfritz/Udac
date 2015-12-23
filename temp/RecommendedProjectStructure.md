@@ -1,4 +1,4 @@
-# Recommended project structure for Android projects
+# Recommended project structure for Android projects.
 
 This is one of the suggested directory structure for Android project
 
