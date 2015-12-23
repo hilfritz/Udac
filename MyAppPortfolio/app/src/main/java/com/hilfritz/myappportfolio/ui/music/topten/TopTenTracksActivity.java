@@ -9,15 +9,18 @@ import android.view.View;
 
 import com.hilfritz.myappportfolio.BaseActivity;
 import com.hilfritz.myappportfolio.R;
+import com.hilfritz.myappportfolio.eventbus.BusProvider;
+import com.hilfritz.myappportfolio.eventbus.TopTenTracksEvent;
 import com.hilfritz.myappportfolio.ui.music.MusicPlayerAppUtil;
 import com.hilfritz.myappportfolio.ui.music.player.MusicPlayerActivity;
 import com.hilfritz.myappportfolio.ui.music.player.MusicPlayerFragment;
 import com.hilfritz.spotsl.wrapper.Image;
 import com.hilfritz.spotsl.wrapper.Track;
+import com.squareup.otto.Subscribe;
 
 import butterknife.ButterKnife;
 
-public class TopTenTracksActivity extends BaseActivity implements TopTenTracksFragment.OnTrackItemClickListener{
+public class TopTenTracksActivity extends BaseActivity {
     TopTenTracksFragment topTenTracksFragment;
     public static final String EXTRA_ARTIST_NAME = "ARTIST_NAME";
     public static final String EXTRA_ARTIST_ID = "ARTIST_ID";
@@ -38,22 +41,30 @@ public class TopTenTracksActivity extends BaseActivity implements TopTenTracksFr
         topTenTracksFragment = (TopTenTracksFragment) fragment;
         topTenTracksFragment.setArtistName(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
         topTenTracksFragment.setArtistId(getIntent().getStringExtra(EXTRA_ARTIST_ID));
-        topTenTracksFragment.setOnTrackItemClickListener(this);
         //topTenTracksFragment.populate();
         Log.d(TAG, "artistName=" + getIntent().getStringExtra(EXTRA_ARTIST_NAME) + " id=" + getIntent().getStringExtra(EXTRA_ARTIST_ID));
     }
 
-    @Override
-    public void showMusicPlayer(View view) {
-        Track track = (Track) view.findViewById(R.id.relativeLayout).getTag(R.string.top_ten_tracks);
-        int indexStr = (int)view.findViewById(R.id.relativeLayout).getTag(R.string.index);
-        startMusicPlayerActivity(track, indexStr);
-
+    @Subscribe
+    public void onTopTenTracksActivityEvent(TopTenTracksEvent event){
+        switch (event.mode){
+            case TopTenTracksEvent.SHOW_MUSIC_PLAYER:
+                startMusicPlayerActivity(event.getSelectedTrack(), event.getSelectedIndex());
+                break;
+        }
     }
 
-    /*private void startMusicPlayerActivity(Track track, int index){
-        startMusicPlayerActivity(track, String.valueOf(index));
-    }*/
+    @Override
+    protected void onPause() {
+        super.onPause();
+        BusProvider.getInstance().unregister(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BusProvider.getInstance().register(this);
+    }
 
     private void startMusicPlayerActivity(Track track, int index){
         String artistName = track.getArtists().get(0).getName();

@@ -8,27 +8,34 @@ import android.view.View;
 
 import com.hilfritz.myappportfolio.BaseActivity;
 import com.hilfritz.myappportfolio.R;
+import com.hilfritz.myappportfolio.eventbus.BusProvider;
+import com.hilfritz.myappportfolio.eventbus.SearchArtistEvent;
+import com.hilfritz.myappportfolio.eventbus.TopTenTracksEvent;
 import com.hilfritz.myappportfolio.ui.music.MusicPlayerAppUtil;
 import com.hilfritz.myappportfolio.ui.music.player.MusicPlayerDialogFragment;
 import com.hilfritz.myappportfolio.ui.music.topten.TopTenTracksFragment;
 import com.hilfritz.spotsl.wrapper.Image;
 import com.hilfritz.spotsl.wrapper.Item;
 import com.hilfritz.spotsl.wrapper.Track;
+import com.squareup.otto.Subscribe;
 
 /**
  * Created by Hilfritz P. Camallere on 6/14/2015.
  */
-public class SearchArtistActivity extends BaseActivity implements SearchArtistFragment.SearchArtistFragmentCallbacks, TopTenTracksFragment.OnTrackItemClickListener, MusicPlayerDialogFragment.MediaPrepareListener {
+public class SearchArtistActivity extends BaseActivity implements MusicPlayerDialogFragment.MediaPrepareListener {
     SearchArtistFragment searchArtistFragment;
     TopTenTracksFragment topTenTracksFragment;
     boolean twoPaneMode = false;
     private static final String TAG = "SearchArtistActivity";
     private MusicPlayerDialogFragment musicPlayerDialogFragment;
+    public static final int SKIP_NEXT = 1;
+    public static final int SKIP_PREVIOUS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
     }
 
     @Override
@@ -39,46 +46,61 @@ public class SearchArtistActivity extends BaseActivity implements SearchArtistFr
         if (findViewById(R.id.fragmentContainer)!=null){
             twoPaneMode = true;
             searchArtistFragment.setSingleChoiceMode(true);
-            searchArtistFragment.setCallback(this);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        BusProvider.getInstance().unregister(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BusProvider.getInstance().register(this);
     }
 
     public boolean isTwoPaneMode() {
         return twoPaneMode;
     }
 
-    @Override
-    public void onArtistItemSelected(Item item) {
-        if (isTwoPaneMode()){
-            //update the list
-            topTenTracksFragment = new TopTenTracksFragment();
-            topTenTracksFragment.setArtistId(item.getId());
-            topTenTracksFragment.setArtistName(item.getName());
-            topTenTracksFragment.setOnTrackItemClickListener(this);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentContainer, topTenTracksFragment)
-                    .commit();
+    @Subscribe
+    public void onSearchArtistListEvent(SearchArtistEvent event){
+        switch (event.getMode()) {
+            case SearchArtistEvent.CLEAR:
+                    if (isTwoPaneMode()) {
+                        if (topTenTracksFragment != null) {    //PLACE HERE BECAUSE THE FARGMENT MAY NOT YET BE CREATED
+                            topTenTracksFragment.clearTopTenTracksList();
+                        } else {
+                            Log.d(TAG, "onSearchArtistListClear() topTenTracksFragment is null");
+                        }
+                    }
+                break;
+            case SearchArtistEvent.SHOW_RESULT_LIST_FOR_TABLET:
+                if (isTwoPaneMode()){
+                    //TODO test this on tablets
+                    //update the list
+                    topTenTracksFragment = new TopTenTracksFragment();
+                    topTenTracksFragment.setArtistId(event.getItem().getId());
+                    topTenTracksFragment.setArtistName(event.getItem().getName());
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainer, topTenTracksFragment)
+                            .commit();
+                }
+                break;
         }
     }
 
-    @Override
-    public void onSearchArtistListClear() {
-        if (isTwoPaneMode()){
-            if (topTenTracksFragment!=null){    //PLACE HERE BECAUSE THE FARGMENT MAY NOT YET BE CREATED
-                topTenTracksFragment.clearTopTenTracksList();
-            }else{
-                Log.d(TAG, "onSearchArtistListClear() topTenTracksFragment is null");
-            }
+    @Subscribe
+    public void onTopTenTracksActivityEvent(TopTenTracksEvent event){
+        switch (event.mode){
+            case TopTenTracksEvent.SHOW_MUSIC_PLAYER:
+                showMusicPlayerDialog(event.getSelectedTrack(), event.getSelectedIndex());
+                break;
         }
-
     }
 
-    @Override
-    public void showMusicPlayer(View view) {
-        Track track = (Track) view.findViewById(R.id.relativeLayout).getTag(R.string.top_ten_tracks);
-        int index = (int)view.findViewById(R.id.relativeLayout).getTag(R.string.index);
-        showMusicPlayerDialog(track, index);
-    }
     protected void showMusicPlayerDialog(Track track, int index){
         String artistName = track.getArtists().get(0).getName();
         String albumName = track.getAlbum().getName();
@@ -89,7 +111,6 @@ public class SearchArtistActivity extends BaseActivity implements SearchArtistFr
         String trackName = track.getName();
         String trackDuration = track.getDurationMs().toString();
         String trackPreviewUrl = track.getPreviewUrl();
-
         musicPlayerDialogFragment = new MusicPlayerDialogFragment();
         musicPlayerDialogFragment.initialize(artistName, albumName, artworkUrl, trackName, trackDuration, trackPreviewUrl, index);
         //musicPlayerDialogFragment.setCancelable(false);

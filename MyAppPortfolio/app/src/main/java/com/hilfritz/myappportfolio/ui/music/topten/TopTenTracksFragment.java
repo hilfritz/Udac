@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.hilfritz.myappportfolio.BaseActivity;
 import com.hilfritz.myappportfolio.BaseFragment;
 import com.hilfritz.myappportfolio.R;
+import com.hilfritz.myappportfolio.delegate.ui.music.topten.TopTenTracksEventDelegate;
 import com.hilfritz.spotsl.requests.SearchArtistTopTracksRequest;
 import com.hilfritz.spotsl.wrapper.TopTracksWrapper;
 import com.hilfritz.spotsl.wrapper.Track;
@@ -39,8 +40,6 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
 
     List<Track> tracksList = new ArrayList<Track>();
     TopTenTracksAdapter topTenTracksAdapter;
-    boolean firstLoad = true;
-    OnTrackItemClickListener onTrackItemClickListener;
 
     public TopTenTracksFragment() {
 
@@ -93,9 +92,9 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
 
     @Override
     public void handleClick(View view) {
-        if (onTrackItemClickListener !=null) {
-            onTrackItemClickListener.showMusicPlayer(view);
-        }
+        Track track = (Track) view.findViewById(R.id.relativeLayout).getTag(R.string.top_ten_tracks);
+        int indexStr = (int)view.findViewById(R.id.relativeLayout).getTag(R.string.index);
+        TopTenTracksEventDelegate.showMusicPlayer(indexStr,track);
     }
 
     @Override
@@ -155,11 +154,5 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
         emptyTextView.setVisibility(View.VISIBLE);
         topTracksRecyclerView.setVisibility(View.GONE);
     }
-    public interface OnTrackItemClickListener {
-        public void showMusicPlayer(View view);
-    }
 
-    public void setOnTrackItemClickListener(OnTrackItemClickListener onTrackItemClickListener) {
-        this.onTrackItemClickListener = onTrackItemClickListener;
-    }
 }

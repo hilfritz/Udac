@@ -16,6 +16,9 @@ import android.widget.TextView;
 import com.hilfritz.myappportfolio.BaseActivity;
 import com.hilfritz.myappportfolio.BaseFragment;
 import com.hilfritz.myappportfolio.R;
+import com.hilfritz.myappportfolio.delegate.ui.music.search.SearchArtistDeligate;
+import com.hilfritz.myappportfolio.eventbus.BusProvider;
+import com.hilfritz.myappportfolio.eventbus.SearchArtistEvent;
 import com.hilfritz.myappportfolio.tools.StringUtil;
 import com.hilfritz.myappportfolio.ui.music.topten.TopTenTracksActivity;
 import com.hilfritz.spotsl.requests.SearchArtistRequest;
@@ -56,7 +59,6 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
      * give items the 'activated' state when touched.
      */
     boolean singleChoiceMode = false;
-    SearchArtistFragmentCallbacks callback;
 
 
     @Nullable
@@ -94,7 +96,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
             intent.putExtra(TopTenTracksActivity.EXTRA_ARTIST_NAME, item.getName());
             getActivity().startActivity(intent);
         }else{
-            Item item = (Item) view.findViewById(R.id.textView).getTag(R.string.search_activity);
+            Item selectedArtist = (Item) view.findViewById(R.id.textView).getTag(R.string.search_activity);
             //view.setActivated(true);
             TextView textView = (TextView)view.findViewById(R.id.textView);;
             int index = (int)textView.getTag(R.string.index);
@@ -103,7 +105,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
             clearActiveIndex(getPreviousActiveIndex());
             //UPDATE RECYCLERVIEW TO SHOW THE ACTIVE INDEX
             updateActiveSearchArtistIndexListItem(index, view);
-            callback.onArtistItemSelected(item);
+            SearchArtistDeligate.showSearchResultForTab(selectedArtist);
         }
     }
 
@@ -152,9 +154,8 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
             public boolean onQueryTextChange(String newText) {
                 emptyTextView.setText(getString(R.string.press_search_to_look_for_artist, newText));
                 artistRecyclerView.setVisibility(View.GONE);
-                if (StringUtil.isNullOrEmptyString(newText)){
-                    if (callback!=null)
-                        callback.onSearchArtistListClear();
+                if (StringUtil.isNullOrEmptyString(newText)) {
+                    SearchArtistDeligate.clearList();
                 }
                 return true;
             }
@@ -201,9 +202,6 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
         emptyTextView.setVisibility(View.VISIBLE);
         artistRecyclerView.setVisibility(View.GONE);
     }
-    public void setCallback(SearchArtistFragmentCallbacks callback) {
-        this.callback = callback;
-    }
 
     public int getActiveIndex() {
         return activeIndex;
@@ -219,19 +217,6 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
         this.activeIndex=activeIndex;
         searchArtistAdapter.setActiveIndex(activeIndex);
 
-    }
-
-    /**
-    * A callback interface that all activities containing this fragment must
-    * implement. This mechanism allows activities to be notified of item
-    * selections.
-    */
-    public interface SearchArtistFragmentCallbacks {
-        /**
-         * Callback for when an item has been selected.
-         */
-        public void onArtistItemSelected(Item item);
-        public void onSearchArtistListClear();
     }
 
 }
