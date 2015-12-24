@@ -154,6 +154,14 @@ Fresco: https://github.com/facebook/fresco
 ### Usage
 
 ```java
+//add on your app's build.gradle
+compile 'com.facebook.fresco:fresco:0.7.0+'
+
+//initialize in your APPLICATION class first
+Fresco.initialize(this.getApplicationContext());
+
+
+
 //this will load the 2nd parameter image to the first parameter imageview
 FrescoUtils.showCompanyLogo(simpleDraweeView,"http://sampleweb.com/images/trap.png");
 
