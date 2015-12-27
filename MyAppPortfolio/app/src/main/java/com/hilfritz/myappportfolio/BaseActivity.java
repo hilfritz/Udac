@@ -1,6 +1,7 @@
 package com.hilfritz.myappportfolio;
 
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.hilfritz.myappportfolio.ui.BaseActivityInterface;
@@ -12,7 +13,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Hilfritz P. Camallere on 6/6/2015.
  */
-public abstract class BaseActivity extends ActionBarActivity implements BaseActivityInterface{
+public abstract class BaseActivity extends AppCompatActivity implements BaseActivityInterface{
     private SpiceManager spiceManager = new SpiceManager(SpotifySpiceService.class);
 
 
