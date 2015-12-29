@@ -31,6 +31,7 @@ public class TopTenTracksActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_top_ten_tracks);
         ButterKnife.bind(this);
     }

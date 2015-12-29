@@ -35,6 +35,7 @@ public class MusicPlayerActivity extends BaseActivity implements MusicPlayerFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein,R.anim.fadeout);
         supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_music_player);
     }
