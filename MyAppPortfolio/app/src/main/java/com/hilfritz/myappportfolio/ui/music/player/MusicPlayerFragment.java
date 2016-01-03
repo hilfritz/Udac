@@ -135,7 +135,7 @@ public class MusicPlayerFragment extends BaseFragment implements
     }
 
     @Override
-    public void initialize() {
+    public void afterInitViews() {
         populate();
     }
 

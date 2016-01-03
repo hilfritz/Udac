@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        tools:background="#ff0000"
+        />
+    <TextView
+        android:layout_marginLeft="@dimen/vertical_margin_a"
+        android:layout_marginTop="@dimen/vertical_margin_a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:id="@+id/nameTextView"
+        android:layout_toRightOf="@id/imageView"
+        tools:text="Name of the Place"
+        android:textColor="@color/primary_text"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:id="@+id/descriptionTextView"
+        android:layout_toRightOf="@id/imageView"
+        android:layout_below="@id/nameTextView"
+        tools:text="Description of the Place"
+        android:textColor="@color/secondary_text"
+        android:layout_marginLeft="@dimen/vertical_margin_a"
+        android:layout_marginTop="@dimen/vertical_margin_a"
+        />
+</RelativeLayout>

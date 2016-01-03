@@ -98,7 +98,7 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
     }
 
     @Override
-    public void initialize() {
+    public void afterInitViews() {
         if (artistId!=null && artistId.isEmpty()==false)
             populate();
     }

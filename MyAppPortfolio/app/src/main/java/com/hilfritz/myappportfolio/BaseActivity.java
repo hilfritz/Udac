@@ -1,6 +1,6 @@
 package com.hilfritz.myappportfolio;
 
-import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -35,6 +35,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseActi
     }
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        init();
+    }
+
+    @Override
     protected void onStart() {
         spiceManager.start(getApplicationContext());
         super.onStart();
@@ -45,7 +51,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseActi
         super.onResume();
         if (firstLoad){
             firstLoad = false;
-            initialize();
+            afterInitViews();
         }
     }
 

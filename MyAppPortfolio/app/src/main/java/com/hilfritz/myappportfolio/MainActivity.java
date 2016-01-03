@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 
 import com.hilfritz.myappportfolio.ui.music.search.SearchArtistActivity;
+import com.hilfritz.myappportfolio.ui.places.PlaceActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,7 +33,12 @@ public class MainActivity extends BaseActivity{
     }
 
     @Override
-    public void initialize() {
+    public void init() {
+
+    }
+
+    @Override
+    public void afterInitViews() {
 
     }
 
@@ -69,6 +75,11 @@ public class MainActivity extends BaseActivity{
     public void portfolioAppsClick(Button button){
         if (button.getId() == R.id.spotifyBtn){
             Intent intent = new Intent(MainActivity.this, SearchArtistActivity.class);
+            startActivity(intent);
+            return;
+        }
+        if (button.getId() == R.id.scoresBtn){
+            Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
             startActivity(intent);
             return;
         }

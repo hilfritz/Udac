@@ -22,7 +22,10 @@ import it.jaschke.alexandria.api.BookListAdapter;
 import it.jaschke.alexandria.api.Callback;
 import it.jaschke.alexandria.data.AlexandriaContract;
 
-
+/**
+ * See CURSORLOADER USAGES
+ * http://www.programcreek.com/java-api-examples/index.php?api=com.activeandroid.content.ContentProvider
+ */
 public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private BookListAdapter bookListAdapter;
@@ -123,6 +126,12 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
         getLoaderManager().restartLoader(LOADER_ID, null, this);
     }
 
+    /**
+     * @SEE https://github.com/pardom/ActiveAndroid/wiki/Using-the-content-provider
+     * @param id
+     * @param args
+     * @return
+     */
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 

@@ -37,7 +37,12 @@ public class TopTenTracksActivity extends BaseActivity {
     }
 
     @Override
-    public void initialize() {
+    public void init() {
+
+    }
+
+    @Override
+    public void afterInitViews() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.topTracksFragment);
         topTenTracksFragment = (TopTenTracksFragment) fragment;
         topTenTracksFragment.setArtistName(getIntent().getStringExtra(EXTRA_ARTIST_NAME));

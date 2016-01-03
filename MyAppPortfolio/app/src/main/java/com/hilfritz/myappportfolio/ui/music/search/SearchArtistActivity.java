@@ -40,7 +40,12 @@ public class SearchArtistActivity extends BaseActivity implements MusicPlayerDia
     }
 
     @Override
-    public void initialize() {
+    public void init() {
+
+    }
+
+    @Override
+    public void afterInitViews() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.searchFragment);
         searchArtistFragment = (SearchArtistFragment)fragment;
 

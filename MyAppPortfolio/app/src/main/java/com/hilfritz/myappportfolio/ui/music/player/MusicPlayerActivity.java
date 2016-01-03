@@ -41,7 +41,12 @@ public class MusicPlayerActivity extends BaseActivity implements MusicPlayerFrag
     }
 
     @Override
-    public void initialize() {
+    public void init() {
+
+    }
+
+    @Override
+    public void afterInitViews() {
         showProgressInActionBar();
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.musicPlayer);
         musicPlayerFragment = (MusicPlayerFragment)fragment;

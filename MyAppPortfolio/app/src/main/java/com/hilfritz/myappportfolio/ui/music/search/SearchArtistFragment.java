@@ -130,7 +130,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     }
 
     @Override
-    public void initialize() {
+    public void afterInitViews() {
         searchArtistAdapter = new SearchArtistAdapter(artistList, SearchArtistFragment.this);
         searchArtistAdapter.setListItemClickListener(this);
         artistRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

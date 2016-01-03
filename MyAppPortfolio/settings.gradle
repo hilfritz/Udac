@@ -1,1 +1,1 @@
-include ':app', ':spotsl', ':musicplayercountdowntimer'
+include ':app', ':spotsl', ':musicplayercountdowntimer', ':favoriteplacesmodule'

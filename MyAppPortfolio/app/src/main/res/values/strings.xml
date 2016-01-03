@@ -4,8 +4,6 @@
     <string name="top_ten_tracks">Top 10 Tracks</string>
 
 
-
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
@@ -37,7 +35,8 @@
     <string name="press_search_to_look_for_artist">Search for <xliff id="albumName">%s</xliff></string>
     <string name="no_network">Please ensure that you are connected to a network with internet connection. </string>
     <string name="no_internet">Please ensure that you are connected to the internet. </string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_music_player">Playing...</string>
+    <string name="title_activity_place">PlaceActivity</string>
 </resources>
