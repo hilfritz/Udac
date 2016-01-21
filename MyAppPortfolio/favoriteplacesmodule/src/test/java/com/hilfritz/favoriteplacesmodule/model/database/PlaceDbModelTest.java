@@ -2,12 +2,14 @@ package com.hilfritz.favoriteplacesmodule.model.database;
 
 import android.os.Build;
 
+import com.activeandroid.ActiveAndroid;
 import com.hilfritz.favoriteplacesmodule.BuildConfig;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricGradleTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.util.List;
@@ -23,7 +25,6 @@ public class PlaceDbModelTest {
 
     @Before
     public void setup(){
-
     }
 
 
