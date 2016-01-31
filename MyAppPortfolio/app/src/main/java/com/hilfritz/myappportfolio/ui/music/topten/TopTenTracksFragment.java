@@ -3,6 +3,7 @@ package com.hilfritz.myappportfolio.ui.music.topten;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +60,23 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
         View view = inflater.inflate(R.layout.fragment_top_ten_music, container, false);
         ButterKnife.bind(this, view);
 
+        topTenTracksAdapter = new TopTenTracksAdapter(tracksList, TopTenTracksFragment.this);
+        topTenTracksAdapter.setListItemClickListener(this);
+
+
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+
+
+        topTracksRecyclerView.setLayoutManager(llm);
+        topTracksRecyclerView.setAdapter(topTenTracksAdapter);
+
+        if (artistId!=null && artistId.isEmpty()==false)
+            populate();
+
         return view;
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -77,11 +93,12 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
 
 
     public void populate(){
+        Log.d(TAG,"populate");
         showLoadingTopTracks();
-        topTenTracksAdapter = new TopTenTracksAdapter(tracksList, TopTenTracksFragment.this);
-        topTenTracksAdapter.setListItemClickListener(this);
-        topTracksRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        topTracksRecyclerView.setAdapter(topTenTracksAdapter);
+        //topTenTracksAdapter = new TopTenTracksAdapter(tracksList, TopTenTracksFragment.this);
+        //topTenTracksAdapter.setListItemClickListener(this);
+        //topTracksRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //topTracksRecyclerView.setAdapter(topTenTracksAdapter);
         SearchArtistTopTracksRequest searchArtistTopTracksRequest = new SearchArtistTopTracksRequest(getArtistId(),SearchArtistTopTracksRequest.DEFAULT_LIMIT, SearchArtistTopTracksRequest.DEFAULT_OFFSET);
         ((BaseActivity) getActivity()).getSpiceManager().execute(searchArtistTopTracksRequest, TAG, DurationInMillis.ALWAYS_EXPIRED, new TopTracksRequestListener());
     }
@@ -99,19 +116,19 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
 
     @Override
     public void afterInitViews() {
-        if (artistId!=null && artistId.isEmpty()==false)
-            populate();
     }
 
 
     private class TopTracksRequestListener implements RequestListener<TopTracksWrapper> {
         @Override
         public void onRequestFailure(SpiceException spiceException) {
+            Log.d(TAG, "onRequestFailure");
             showErrorMessage(spiceException.getLocalizedMessage());
         }
 
         @Override
         public void onRequestSuccess(TopTracksWrapper topTracksWrapper) {
+            Log.d(TAG, "onRequestSuccess");
             tracksList.addAll(topTracksWrapper.getTracks());
             if (tracksList==null){
                 showEmptyTrackForArtist();

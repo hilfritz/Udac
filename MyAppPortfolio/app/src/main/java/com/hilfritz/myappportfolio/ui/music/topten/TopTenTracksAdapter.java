@@ -49,9 +49,10 @@ public class TopTenTracksAdapter extends RecyclerView.Adapter<TopTenTracksAdapte
 
     @Override
     public void onBindViewHolder(TopTrackListItemViewHolder holder, int position) {
-        holder.trackName.setText(trackList.get(position).getName());
-        holder.albumName.setText(trackList.get(position).getAlbum().getName());
-        List<Image> imageList = trackList.get(position).getAlbum().getImages();
+        Track track = trackList.get(position);
+        holder.trackName.setText(track.getName());
+        holder.albumName.setText(track.getAlbum().getName());
+        List<Image> imageList = track.getAlbum().getImages();
         MusicPlayerAppUtil.loadImage(holder.imageView, imageList, topTenTracksFragment.getActivity(), R.drawable.music_album);
 
         if (MusicPlayerAppUtil.isEven(position)){
@@ -60,7 +61,7 @@ public class TopTenTracksAdapter extends RecyclerView.Adapter<TopTenTracksAdapte
             holder.relativeLayout.setBackgroundResource(R.drawable.item_listview_even2_selector);
         }
 
-        holder.relativeLayout.setTag(R.string.top_ten_tracks, trackList.get(position));
+        holder.relativeLayout.setTag(R.string.top_ten_tracks, track);
         holder.relativeLayout.setTag(R.string.index, position);
     }
 

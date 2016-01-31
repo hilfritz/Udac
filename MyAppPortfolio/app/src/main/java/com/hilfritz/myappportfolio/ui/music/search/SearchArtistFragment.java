@@ -21,6 +21,9 @@ import com.hilfritz.myappportfolio.eventbus.BusProvider;
 import com.hilfritz.myappportfolio.eventbus.SearchArtistEvent;
 import com.hilfritz.myappportfolio.tools.StringUtil;
 import com.hilfritz.myappportfolio.ui.music.topten.TopTenTracksActivity;
+import com.hilfritz.spotsl.SpotifyApi;
+import com.hilfritz.spotsl.network.SpotifySpiceService;
+import com.hilfritz.spotsl.requests.BaseRequest;
 import com.hilfritz.spotsl.requests.SearchArtistRequest;
 import com.hilfritz.spotsl.wrapper.Item;
 import com.hilfritz.spotsl.wrapper.SearchWrapper;
@@ -33,6 +36,11 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Retrofit;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -144,11 +152,13 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
 
                 emptyTextView.setText("Searching " + searchView.getQuery().toString() + " please wait... ");
                 //PERFORM SEARCH
-                SearchArtistRequest searchArtistRequest = new SearchArtistRequest(searchView.getQuery().toString(), SearchArtistRequest.DEFAULT_LIMIT * 10, SearchArtistRequest.DEFAULT_OFFSET);
-                ((BaseActivity) getActivity()).getSpiceManager().execute(searchArtistRequest, "search", DurationInMillis.ALWAYS_EXPIRED, new SearchRequestListener());
+                //SearchArtistRequest searchArtistRequest = new SearchArtistRequest(searchView.getQuery().toString(), SearchArtistRequest.DEFAULT_LIMIT * 10, SearchArtistRequest.DEFAULT_OFFSET);
+                //((BaseActivity) getActivity()).getSpiceManager().execute(searchArtistRequest, "search", DurationInMillis.ALWAYS_EXPIRED, new SearchRequestListener());
+
+                //call spi using rxAndroid
+                searchArtist(searchView.getQuery().toString(), SearchArtistRequest.DEFAULT_LIMIT * 10, SearchArtistRequest.DEFAULT_OFFSET);
                 return true;
             }
-
 
             @Override
             public boolean onQueryTextChange(String newText) {
@@ -158,6 +168,24 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
                     SearchArtistDeligate.clearList();
                 }
                 return true;
+            }
+        });
+    }
+
+    private void searchArtist(final String artistName, final int limit, final int offset){
+        BaseRequest br = new BaseRequest();
+        br.getSpotifyApi().searchArtistObservable(artistName, SearchArtistRequest.TYPE_ARTIST,limit, offset)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                //.subscribe(searchWrapper -> displayResult(searchWrapper));
+                .subscribe(new Subscriber<SearchWrapper>() {
+            @Override
+            public void onCompleted() {}
+            @Override
+            public void onError(Throwable e) {}
+            @Override
+            public void onNext(SearchWrapper searchWrapper) {
+                displayResult(searchWrapper);
             }
         });
     }
@@ -172,23 +200,27 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
 
         @Override
         public void onRequestSuccess(SearchWrapper searchWrapper) {
-            String queryString = searchView.getQuery().toString();
-            artistList.addAll(searchWrapper.getArtists().getItems());
-            if (artistList == null){
-                showArtistNotFound();
-                return;
-            }
-            if (artistList.size() == 0){
-                showArtistNotFound();
-                return;
-            }
-            //THERE SHOULD BE NO ACTIVE INDEX YET
-            searchArtistAdapter.setActiveIndex(-1);
-            searchArtistAdapter.notifyDataSetChanged();
-            artistRecyclerView.setVisibility(View.VISIBLE);
-            //emptyTextView.setText("complete with "+searchWrapper.getArtists().getItems().size());
-            emptyTextView.setText("");
+            displayResult(searchWrapper);
         }
+    }
+
+    private void displayResult(SearchWrapper searchWrapper){
+        String queryString = searchView.getQuery().toString();
+        artistList.addAll(searchWrapper.getArtists().getItems());
+        if (artistList == null){
+            showArtistNotFound();
+            return;
+        }
+        if (artistList.size() == 0){
+            showArtistNotFound();
+            return;
+        }
+        //THERE SHOULD BE NO ACTIVE INDEX YET
+        searchArtistAdapter.setActiveIndex(-1);
+        searchArtistAdapter.notifyDataSetChanged();
+        artistRecyclerView.setVisibility(View.VISIBLE);
+        //emptyTextView.setText("complete with "+searchWrapper.getArtists().getItems().size());
+        emptyTextView.setText("");
     }
 
     private void showArtistNotFound(){

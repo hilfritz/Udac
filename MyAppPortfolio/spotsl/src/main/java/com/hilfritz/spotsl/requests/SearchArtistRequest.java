@@ -26,4 +26,5 @@ public class SearchArtistRequest extends RetrofitSpiceRequest<SearchWrapper, Spo
     public SearchWrapper loadDataFromNetwork() throws Exception {
         return getService().searchArtistW(artistName, TYPE_ARTIST, this.limit, this.offset);
     }
+
 }

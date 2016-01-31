@@ -34,6 +34,14 @@ public class TopTenTracksActivity extends BaseActivity {
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_top_ten_tracks);
         ButterKnife.bind(this);
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.topTracksFragment);
+        topTenTracksFragment = (TopTenTracksFragment) fragment;
+        topTenTracksFragment.setArtistName(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
+        topTenTracksFragment.setArtistId(getIntent().getStringExtra(EXTRA_ARTIST_ID));
+        //topTenTracksFragment.populate();
+        Log.d(TAG, "artistName=" + getIntent().getStringExtra(EXTRA_ARTIST_NAME) + " id=" + getIntent().getStringExtra(EXTRA_ARTIST_ID));
+
     }
 
     @Override
@@ -43,12 +51,6 @@ public class TopTenTracksActivity extends BaseActivity {
 
     @Override
     public void afterInitViews() {
-        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.topTracksFragment);
-        topTenTracksFragment = (TopTenTracksFragment) fragment;
-        topTenTracksFragment.setArtistName(getIntent().getStringExtra(EXTRA_ARTIST_NAME));
-        topTenTracksFragment.setArtistId(getIntent().getStringExtra(EXTRA_ARTIST_ID));
-        //topTenTracksFragment.populate();
-        Log.d(TAG, "artistName=" + getIntent().getStringExtra(EXTRA_ARTIST_NAME) + " id=" + getIntent().getStringExtra(EXTRA_ARTIST_ID));
     }
 
     @Subscribe
