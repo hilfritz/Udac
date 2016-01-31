@@ -89,8 +89,6 @@ public class PlaceDbModel extends Model {
         // This is how you execute a query
         return new Select()
                 .from(PlaceDbModel.class)
-                .where("status = ?", status)
-                .orderBy("id DESC")
                 .execute();
     }
 
@@ -98,7 +96,7 @@ public class PlaceDbModel extends Model {
         // This is how you execute a query
         return new Select()
                 .from(PlaceDbModel.class)
-                .where("id = ?", placeId)
+                .where("_id = ?", placeId)
                 .executeSingle();
     }
 
@@ -106,7 +104,7 @@ public class PlaceDbModel extends Model {
         // This is how you execute a query
         return new Select()
                 .from(PlaceDbModel.class)
-                .where("id = ? and status = ?", placeId, status)
+                .where("_id = ? and status = ?", placeId, status)
                 .orderBy("id DESC")
                 .executeSingle();
     }
