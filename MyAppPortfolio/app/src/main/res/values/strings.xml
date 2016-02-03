@@ -39,4 +39,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_music_player">Playing...</string>
     <string name="title_activity_place">PlaceActivity</string>
+    <string name="title_activity_album">AlbumActivity</string>
+    <string name="title_activity_album_photo">AlbumPhotoActivity</string>
+    <string name="title_activity_fullsize_photo">FullsizePhotoActivity</string>
 </resources>

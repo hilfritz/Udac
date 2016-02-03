@@ -1,5 +1,6 @@
 package com.hilfritz.myappportfolio.ui.music.player;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.hilfritz.musicplayercountdowntimer.CountDownTimerWithPause;
 import com.hilfritz.musicplayercountdowntimer.TimeFormatUtil;
 import com.hilfritz.myappportfolio.BaseActivity;
@@ -22,6 +24,8 @@ import com.hilfritz.myappportfolio.R;
 import com.hilfritz.myappportfolio.tools.NumberUtil;
 import com.hilfritz.myappportfolio.tools.StringUtil;
 import com.hilfritz.myappportfolio.ui.music.MusicPlayerAppUtil;
+import com.hilfritz.spotsl.wrapper.Image;
+import com.hilfritz.spotsl.wrapper.Track;
 
 import java.io.IOException;
 
@@ -60,7 +64,7 @@ public class MusicPlayerDialogFragment extends DialogFragment implements
     @Bind(R.id.seekLeftButton) ImageButton seekLeftButton;
     @Bind(R.id.seekRightButton) ImageButton seekRightButton;
     @Bind(R.id.playPauseButton) ImageButton playPauseButton;
-
+    Track track;
 
     public static final int SPOTIFY_PREVIEW_DURATION = 30000; //30 seconds
     public static final String TAG = "MusicPlayerDFragment";
@@ -79,10 +83,22 @@ public class MusicPlayerDialogFragment extends DialogFragment implements
     long currentPositionInMs = 0;
     MediaPrepareListener mediaPrepareListener;
 
+    public static MusicPlayerDialogFragment newInstance(Track track,int index){
+        MusicPlayerDialogFragment mpf = new MusicPlayerDialogFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("track", new Gson().toJson(track));
+        bundle.putInt("index", index);
+        mpf.setArguments(bundle);
+        return mpf;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music_player, container, false);
+        String temp = savedInstanceState.getString("track");
+        track = new Gson().fromJson(temp,Track.class);
+        if (track!=null)
+            initialize(track, savedInstanceState.getInt("index", 0));
         ButterKnife.bind(this, view);
         return view;
     }
@@ -102,6 +118,19 @@ public class MusicPlayerDialogFragment extends DialogFragment implements
         this.trackDuration = trackDuration;
         this.trackPreviewUrl = trackPreviewUrl;
         this.index = index;
+    }
+
+    public void initialize(Track track, int index){
+        String artistName = track.getArtists().get(0).getName();
+        String albumName = track.getAlbum().getName();
+        Image image = MusicPlayerAppUtil.getImageToDisplay(track.getAlbum().getImages());
+        String artworkUrl = null;
+        if (image != null)
+            artworkUrl = image.getUrl();
+        String trackName = track.getName();
+        String trackDuration = track.getDurationMs().toString();
+        String trackPreviewUrl = track.getPreviewUrl();
+        initialize(artistName, albumName, artworkUrl, trackName, trackDuration, trackPreviewUrl, index);
     }
     public void populate(){
         //SHOW LOADING

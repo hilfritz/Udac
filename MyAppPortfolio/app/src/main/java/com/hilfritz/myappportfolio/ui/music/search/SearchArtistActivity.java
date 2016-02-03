@@ -108,20 +108,10 @@ public class SearchArtistActivity extends BaseActivity implements MusicPlayerDia
     }
 
     protected void showMusicPlayerDialog(Track track, int index){
-        String artistName = track.getArtists().get(0).getName();
-        String albumName = track.getAlbum().getName();
-        Image image = MusicPlayerAppUtil.getImageToDisplay(track.getAlbum().getImages());
-        String artworkUrl = null;
-        if (image != null)
-            artworkUrl = image.getUrl();
-        String trackName = track.getName();
-        String trackDuration = track.getDurationMs().toString();
-        String trackPreviewUrl = track.getPreviewUrl();
-        musicPlayerDialogFragment = new MusicPlayerDialogFragment();
-        musicPlayerDialogFragment.initialize(artistName, albumName, artworkUrl, trackName, trackDuration, trackPreviewUrl, index);
-        //musicPlayerDialogFragment.setCancelable(false);
+        musicPlayerDialogFragment = MusicPlayerDialogFragment.newInstance(track,index);
         musicPlayerDialogFragment.setMediaPrepareListener(this);
         musicPlayerDialogFragment.show(getSupportFragmentManager(), MusicPlayerDialogFragment.TAG);
+
     }
 
     @Override

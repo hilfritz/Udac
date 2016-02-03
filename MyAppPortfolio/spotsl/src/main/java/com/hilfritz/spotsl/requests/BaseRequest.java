@@ -15,22 +15,29 @@ import retrofit2.Retrofit;
  * see https://kmangutov.wordpress.com/2015/03/28/android-mvp-consuming-restful-apis/
  */
 public class BaseRequest {
-    RestAdapter restAdapter;
+    static RestAdapter restAdapter;
     public static final String SPOTIFY_ENDPOINT = "https://api.spotify.com/v1";
-    SpotifyApi spotifyApi;
+    static SpotifyApi spotifyApi;
+
 
     public BaseRequest() {
-        restAdapter = new RestAdapter.Builder()
-                .setEndpoint(SPOTIFY_ENDPOINT)
-                .build();
-        spotifyApi = restAdapter.create(SpotifyApi.class);
     }
 
-    public SpotifyApi getSpotifyApi(){
-        return this.spotifyApi;
-    }
-
-    public RestAdapter getRestAdapter() {
+    public static RestAdapter getRestAdapter(){
+        if (restAdapter==null){
+            restAdapter = new RestAdapter.Builder()
+                    .setEndpoint(SPOTIFY_ENDPOINT)
+                    .build();
+        }
         return restAdapter;
     }
+
+
+
+    public static SpotifyApi getSpotifyApi(){
+        if (spotifyApi==null)
+            spotifyApi = getRestAdapter().create(SpotifyApi.class);
+        return spotifyApi;
+    }
+
 }

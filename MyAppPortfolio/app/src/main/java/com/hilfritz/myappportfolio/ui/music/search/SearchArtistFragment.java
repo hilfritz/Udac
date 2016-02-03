@@ -173,11 +173,11 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     }
 
     private void searchArtist(final String artistName, final int limit, final int offset){
-        BaseRequest br = new BaseRequest();
-        br.getSpotifyApi().searchArtistObservable(artistName, SearchArtistRequest.TYPE_ARTIST,limit, offset)
-                .subscribeOn(Schedulers.newThread())
+        BaseRequest.getSpotifyApi().searchArtistObservable(artistName, SearchArtistRequest.TYPE_ARTIST,limit, offset)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 //.subscribe(searchWrapper -> displayResult(searchWrapper));
+
                 .subscribe(new Subscriber<SearchWrapper>() {
             @Override
             public void onCompleted() {}

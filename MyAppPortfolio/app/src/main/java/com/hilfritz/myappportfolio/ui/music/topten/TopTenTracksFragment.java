@@ -71,6 +71,9 @@ public class TopTenTracksFragment extends BaseFragment implements TopTenTracksAd
         topTracksRecyclerView.setLayoutManager(llm);
         topTracksRecyclerView.setAdapter(topTenTracksAdapter);
 
+        artistId = getActivity().getIntent().getStringExtra(TopTenTracksActivity.EXTRA_ARTIST_ID);
+        artistName = getActivity().getIntent().getStringExtra(TopTenTracksActivity.EXTRA_ARTIST_NAME);
+
         if (artistId!=null && artistId.isEmpty()==false)
             populate();
 
