@@ -1,4 +1,4 @@
-package com.hilfritz.myappportfolio.ui.album;
+package com.hilfritz.myappportfolio.ui.album.photolist;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.hilfritz.myappportfolio.ui.album;
+package com.hilfritz.myappportfolio.ui.album.list;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hilfritz.myappportfolio.R;
 import com.hilfritz.myappportfolio.albumapi.pojo.Album;
 import com.hilfritz.myappportfolio.albumapi.pojo.Users;
+import com.hilfritz.myappportfolio.ui.album.photolist.AlbumPhotoActivity;
 
 import java.util.ArrayList;
 import java.util.List;

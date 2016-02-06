@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.hilfritz.myappportfolio">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -7,6 +8,8 @@
 
     <application
         android:allowBackup="true"
+        android:name=".AppMainApplication"
+        tools:replace="android:name"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
@@ -38,7 +41,7 @@
             android:label="@string/title_activity_place"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ui.album.AlbumActivity"
+            android:name=".ui.album.list.AlbumActivity"
             android:label="@string/title_activity_album">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,10 +50,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.album.AlbumPhotoActivity"
+            android:name=".ui.album.photolist.AlbumPhotoActivity"
             android:label="@string/title_activity_album_photo" />
         <activity
-            android:name=".ui.album.FullsizePhotoActivity"
+            android:name=".ui.album.fullscreenphoto.FullsizePhotoActivity"
             android:label="@string/title_activity_fullsize_photo"></activity>
     </application>
 

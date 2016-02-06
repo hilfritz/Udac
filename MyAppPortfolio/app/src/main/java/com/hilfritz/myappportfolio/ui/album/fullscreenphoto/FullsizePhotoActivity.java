@@ -1,4 +1,4 @@
-package com.hilfritz.myappportfolio.ui.album;
+package com.hilfritz.myappportfolio.ui.album.fullscreenphoto;
 
 import android.os.Bundle;
 import android.app.Activity;

@@ -1,4 +1,4 @@
-package com.hilfritz.myappportfolio.ui.album;
+package com.hilfritz.myappportfolio.ui.album.list;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.hilfritz.myappportfolio.AppMainApplication;
 import com.hilfritz.myappportfolio.R;
 import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
 import com.hilfritz.myappportfolio.albumapi.pojo.Album;
@@ -16,6 +17,8 @@ import com.hilfritz.myappportfolio.albumapi.pojo.Users;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,6 +42,9 @@ public class AlbumActivity extends Activity {
     AlbumListAdapter albumListAdapter;
     ArrayList<Album> albumList;
 
+    @Inject
+    AlbumBaseRequest albumApi;
+
     public static final String SHOW_LIST ="showList";
 
     @Override
@@ -46,6 +52,7 @@ public class AlbumActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
         ButterKnife.bind(this);
+        (((AppMainApplication) getApplication()).getRestApiComponent()).inject(this);
         albumList = new ArrayList<Album>();
         albumListAdapter = new AlbumListAdapter(this, albumList);
         listView.setAdapter(albumListAdapter);
@@ -54,6 +61,8 @@ public class AlbumActivity extends Activity {
         loadAlbums();
         setErrorText("");
         addEditTextObserver();
+
+
     }
 
     private void addEditTextObserver(){
@@ -130,7 +139,7 @@ public class AlbumActivity extends Activity {
 
     private void loadAlbums(){
         setErrorText("Loading albums...");
-        AlbumBaseRequest.getApi().getAlbumsO()
+        albumApi.getApi().getAlbumsO()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Album>>() {
@@ -157,7 +166,7 @@ public class AlbumActivity extends Activity {
 
     private void getUserList(){
         setErrorText("Loading users...");
-        AlbumBaseRequest.getApi().getallUserO()
+        albumApi.getApi().getallUserO()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Users>>() {
@@ -188,7 +197,4 @@ public class AlbumActivity extends Activity {
     private void showErrorLoadingList(){
         setErrorText("Error loading list of albums");
     }
-
-
-
 }

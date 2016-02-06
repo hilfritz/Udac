@@ -1,4 +1,4 @@
-package com.hilfritz.myappportfolio.ui.album;
+package com.hilfritz.myappportfolio.ui.album.photolist;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,16 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hilfritz.myappportfolio.AppMainApplication;
 import com.hilfritz.myappportfolio.R;
 import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
 import com.hilfritz.myappportfolio.albumapi.pojo.Photo;
+import com.hilfritz.myappportfolio.ui.album.fullscreenphoto.FullsizePhotoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,6 +35,8 @@ public class AlbumPhotoActivity extends Activity {
 
     ArrayList<Photo> list;
     AlbumPhotoListAdapter adapter;
+    @Inject
+    AlbumBaseRequest albumApi;
 
     public static final String ALBUM_ID = "albumid";
     public static final String ALBUM_OBJECT = "albumobject";
@@ -41,6 +47,7 @@ public class AlbumPhotoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album_photo);
         ButterKnife.bind(this);
+        (((AppMainApplication) getApplication()).getRestApiComponent()).inject(this);
         list = new ArrayList<Photo>();
         adapter = new AlbumPhotoListAdapter(this, list);
         gridView.setAdapter(adapter);
@@ -77,7 +84,7 @@ public class AlbumPhotoActivity extends Activity {
 
     private void loadPhotos(final int albumId){
         if (albumId!=-1){
-            AlbumBaseRequest.getApi().getAllPhotoO()
+            albumApi.getApi().getAllPhotoO()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Subscriber<List<Photo>>() {

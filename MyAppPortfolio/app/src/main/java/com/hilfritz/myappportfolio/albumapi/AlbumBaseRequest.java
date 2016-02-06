@@ -6,23 +6,20 @@ import retrofit.RestAdapter;
  * Created by Hilfritz P. Camallere on 2/3/2016.
  */
 public class AlbumBaseRequest {
-    static RestAdapter restAdapter;
-    static AlbumListApi albumListApi;
+    RestAdapter restAdapter;
+    AlbumListApi albumListApi;
 
-    public static RestAdapter getRestAdapter(){
-        if (restAdapter==null){
-            restAdapter = new RestAdapter.Builder()
-                    .setEndpoint(AlbumListApi.URL)
-                    .build();
-        }
+    public AlbumBaseRequest() {
+         restAdapter = new RestAdapter.Builder()
+                .setEndpoint(AlbumListApi.URL)
+                .build();
+    }
+    public RestAdapter getRestAdapter(){
         return restAdapter;
     }
-
-
-    public static AlbumListApi getApi(){
+    public AlbumListApi getApi(){
         if (albumListApi==null)
             albumListApi = getRestAdapter().create(AlbumListApi.class);
         return albumListApi;
     }
-
 }
