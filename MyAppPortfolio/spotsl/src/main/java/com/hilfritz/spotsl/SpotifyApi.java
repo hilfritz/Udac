@@ -14,13 +14,8 @@ import rx.Observable;
  * Created by Hilfritz P. Camallere on 6/14/2015.
  */
 public interface SpotifyApi {
+    public static final String SPOTIFY_ENDPOINT = "https://api.spotify.com/v1";
 
-
-
-    //@GET("/search?q={name}*&type=artist&limit="+DEFAULT_LIMIT)
-    //public List<Artists> searchArtist(@Path("name") String name);
-
-    //@GET("/search?q={name}*&type=artist&limit="+DEFAULT_LIMIT)
     @GET("/search")
      public SearchWrapper searchArtistW(
             @Query("q") String artistName,
@@ -42,4 +37,12 @@ public interface SpotifyApi {
             @Query("limit") int limit,
             @Query("offset") int offset
             );
+
+    @GET("/artists/{id}/top-tracks")
+    public Observable <TopTracksWrapper> getTopTracksObservable(
+            @Path("id") String id,
+            @Query("country") String country,  //TODO - make this dynamic
+            @Query("limit") int limit,
+            @Query("offset") int offset
+    );
 }

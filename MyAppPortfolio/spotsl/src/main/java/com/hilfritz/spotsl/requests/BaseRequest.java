@@ -16,28 +16,20 @@ import retrofit2.Retrofit;
  */
 public class BaseRequest {
     static RestAdapter restAdapter;
-    public static final String SPOTIFY_ENDPOINT = "https://api.spotify.com/v1";
     static SpotifyApi spotifyApi;
 
-
     public BaseRequest() {
+        restAdapter = new RestAdapter.Builder()
+                .setEndpoint(SpotifyApi.SPOTIFY_ENDPOINT)
+                .build();
+        spotifyApi = getRestAdapter().create(SpotifyApi.class);
     }
 
-    public static RestAdapter getRestAdapter(){
-        if (restAdapter==null){
-            restAdapter = new RestAdapter.Builder()
-                    .setEndpoint(SPOTIFY_ENDPOINT)
-                    .build();
-        }
+    public RestAdapter getRestAdapter(){
         return restAdapter;
     }
 
-
-
-    public static SpotifyApi getSpotifyApi(){
-        if (spotifyApi==null)
-            spotifyApi = getRestAdapter().create(SpotifyApi.class);
+    public SpotifyApi getSpotifyApi(){
         return spotifyApi;
     }
-
 }

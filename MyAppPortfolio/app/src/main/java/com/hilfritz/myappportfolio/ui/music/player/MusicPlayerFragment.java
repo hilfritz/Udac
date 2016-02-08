@@ -80,6 +80,13 @@ public class MusicPlayerFragment extends BaseFragment implements
     MediaPrepareListener mediaPrepareListener;
 
 
+
+    /*
+    public static MusicPlayerFragment getInstance(){
+
+    }
+    */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music_player, container, false);
@@ -136,7 +143,7 @@ public class MusicPlayerFragment extends BaseFragment implements
 
     @Override
     public void afterInitViews() {
-        populate();
+
     }
 
     private void initializeSeekBar(){

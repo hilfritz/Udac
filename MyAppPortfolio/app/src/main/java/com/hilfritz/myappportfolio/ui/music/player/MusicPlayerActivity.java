@@ -38,6 +38,9 @@ public class MusicPlayerActivity extends BaseActivity implements MusicPlayerFrag
         overridePendingTransition(R.anim.fadein,R.anim.fadeout);
         supportRequestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_music_player);
+
+
+
     }
 
     @Override
@@ -62,6 +65,7 @@ public class MusicPlayerActivity extends BaseActivity implements MusicPlayerFrag
                 getIntent().getIntExtra(MusicPlayerActivity.INDEX,0)
         );
         musicPlayerFragment.setMediaPrepareListener(this);
+        musicPlayerFragment.populate();
     }
 
     public void showProgressInActionBar(){

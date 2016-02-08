@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hilfritz.myappportfolio.AppMainApplication;
 import com.hilfritz.myappportfolio.BaseActivity;
 import com.hilfritz.myappportfolio.BaseFragment;
 import com.hilfritz.myappportfolio.R;
@@ -33,6 +34,8 @@ import com.octo.android.robospice.request.listener.RequestListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -62,6 +65,9 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     int activeIndex = -1;
     int previousActiveIndex = -1;
 
+    @Inject
+    BaseRequest baseRequest;
+
     /**
      *  When setting singleChoiceMode, ListView/recyclerview will automatically
      * give items the 'activated' state when touched.
@@ -74,6 +80,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search_artist,container, false);
         ButterKnife.bind(this, view);
+        (((AppMainApplication)getActivity().getApplication()).getRestApiComponent()).inject(this);
         return view;
     }
 
@@ -146,15 +153,12 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-
                 artistList.clear();
                 searchArtistAdapter.notifyDataSetChanged();
-
                 emptyTextView.setText("Searching " + searchView.getQuery().toString() + " please wait... ");
                 //PERFORM SEARCH
                 //SearchArtistRequest searchArtistRequest = new SearchArtistRequest(searchView.getQuery().toString(), SearchArtistRequest.DEFAULT_LIMIT * 10, SearchArtistRequest.DEFAULT_OFFSET);
                 //((BaseActivity) getActivity()).getSpiceManager().execute(searchArtistRequest, "search", DurationInMillis.ALWAYS_EXPIRED, new SearchRequestListener());
-
                 //call spi using rxAndroid
                 searchArtist(searchView.getQuery().toString(), SearchArtistRequest.DEFAULT_LIMIT * 10, SearchArtistRequest.DEFAULT_OFFSET);
                 return true;
@@ -173,7 +177,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
     }
 
     private void searchArtist(final String artistName, final int limit, final int offset){
-        BaseRequest.getSpotifyApi().searchArtistObservable(artistName, SearchArtistRequest.TYPE_ARTIST,limit, offset)
+        baseRequest.getSpotifyApi().searchArtistObservable(artistName, SearchArtistRequest.TYPE_ARTIST,limit, offset)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 //.subscribe(searchWrapper -> displayResult(searchWrapper));
@@ -182,7 +186,9 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
             @Override
             public void onCompleted() {}
             @Override
-            public void onError(Throwable e) {}
+            public void onError(Throwable e) {
+                showErrorMessage(e.getLocalizedMessage());
+            }
             @Override
             public void onNext(SearchWrapper searchWrapper) {
                 displayResult(searchWrapper);
@@ -190,6 +196,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
         });
     }
 
+    /*
     private class SearchRequestListener implements RequestListener<SearchWrapper> {
         @Override
         public void onRequestFailure(SpiceException spiceException) {
@@ -203,6 +210,7 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
             displayResult(searchWrapper);
         }
     }
+    */
 
     private void displayResult(SearchWrapper searchWrapper){
         String queryString = searchView.getQuery().toString();
@@ -248,7 +256,6 @@ public class SearchArtistFragment extends BaseFragment implements SearchArtistAd
         this.setPreviousActiveIndex(getActiveIndex());
         this.activeIndex=activeIndex;
         searchArtistAdapter.setActiveIndex(activeIndex);
-
     }
 
 }

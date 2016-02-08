@@ -1,6 +1,7 @@
 package com.hilfritz.myappportfolio.module;
 
 import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
+import com.hilfritz.spotsl.requests.BaseRequest;
 
 import javax.inject.Singleton;
 
@@ -15,5 +16,10 @@ public class RestApiModule {
     @Provides @Singleton
     AlbumBaseRequest provideAlbumRestApi(){
         return new AlbumBaseRequest();
+    }
+
+    @Provides @Singleton
+    BaseRequest provideSpotifyBaseRequest(){
+        return new BaseRequest();
     }
 }
