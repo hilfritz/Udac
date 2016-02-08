@@ -34,6 +34,9 @@ android {
 repositories {
     mavenCentral()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    maven {
+        url "https://s3.amazonaws.com/repo.commonsware.com"
+    }
 }
 
 dependencies {
@@ -64,6 +67,8 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0.2'
 
     provided 'org.glassfish:javax.annotation:10.0-b28'
+
+    compile 'com.commonsware.cwac:cam2:0.4.+'
 }
 
 
