@@ -1,6 +1,5 @@
 package com.hilfritz.myappportfolio.components;
 
-import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
 import com.hilfritz.myappportfolio.module.RestApiModule;
 import com.hilfritz.myappportfolio.ui.album.list.AlbumActivity;
 import com.hilfritz.myappportfolio.ui.album.photolist.AlbumPhotoActivity;

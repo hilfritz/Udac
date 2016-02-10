@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.hilfritz.myappportfolio.AppMainApplication;
 import com.hilfritz.myappportfolio.R;
-import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
+import com.hilfritz.myappportfolio.albumapi.AlbumApiManager;
 import com.hilfritz.myappportfolio.albumapi.pojo.Photo;
 import com.hilfritz.myappportfolio.ui.album.fullscreenphoto.FullsizePhotoActivity;
 
@@ -36,7 +36,7 @@ public class AlbumPhotoActivity extends Activity {
     ArrayList<Photo> list;
     AlbumPhotoListAdapter adapter;
     @Inject
-    AlbumBaseRequest albumApi;
+    AlbumApiManager albumApi;
 
     public static final String ALBUM_ID = "albumid";
     public static final String ALBUM_OBJECT = "albumobject";

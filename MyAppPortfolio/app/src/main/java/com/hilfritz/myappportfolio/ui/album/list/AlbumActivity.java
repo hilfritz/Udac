@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.hilfritz.myappportfolio.AppMainApplication;
 import com.hilfritz.myappportfolio.R;
-import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
+import com.hilfritz.myappportfolio.albumapi.AlbumApiManager;
 import com.hilfritz.myappportfolio.albumapi.pojo.Album;
 import com.hilfritz.myappportfolio.albumapi.pojo.Users;
 
@@ -43,7 +43,7 @@ public class AlbumActivity extends Activity {
     ArrayList<Album> albumList;
 
     @Inject
-    AlbumBaseRequest albumApi;
+    AlbumApiManager albumApi;
 
     public static final String SHOW_LIST ="showList";
 
@@ -139,6 +139,26 @@ public class AlbumActivity extends Activity {
 
     private void loadAlbums(){
         setErrorText("Loading albums...");
+        albumApi.getAlbumsObservable().subscribe(new Subscriber<List<Album>>() {
+            @Override
+            public void onCompleted() {
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                showErrorLoadingList();
+            }
+
+            @Override
+            public void onNext(List<Album> albums) {
+                if (albums != null) {
+                    albumList.clear();
+                    albumList.addAll(albums);
+                }
+                getUserList();
+            }
+        });
+        /*
         albumApi.getApi().getAlbumsO()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -161,11 +181,24 @@ public class AlbumActivity extends Activity {
                         getUserList();
                     }
                 });
-
+        */
     }
 
     private void getUserList(){
         setErrorText("Loading users...");
+        albumApi.getUsersObservable().subscribe(new Subscriber<List<Users>>() {
+            @Override
+            public void onCompleted() {}
+            @Override
+            public void onError(Throwable e) {
+                showErrorLoadingList();
+            }
+            @Override
+            public void onNext(List<Users> userses) {
+                showAlbumList(albumList, userses);
+            }
+        });
+        /*
         albumApi.getApi().getallUserO()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -181,6 +214,7 @@ public class AlbumActivity extends Activity {
                         showAlbumList(albumList, userses);
                     }
                 });
+                */
     }
 
     private void showAlbumList(List<Album> list, List<Users> usersList){

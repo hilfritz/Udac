@@ -1,6 +1,6 @@
 package com.hilfritz.myappportfolio.module;
 
-import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
+import com.hilfritz.myappportfolio.albumapi.AlbumApiManager;
 import com.hilfritz.spotsl.requests.BaseRequest;
 
 import javax.inject.Singleton;
@@ -14,8 +14,8 @@ import dagger.Provides;
 @Module
 public class RestApiModule {
     @Provides @Singleton
-    AlbumBaseRequest provideAlbumRestApi(){
-        return new AlbumBaseRequest();
+    AlbumApiManager provideAlbumRestApi(){
+        return new AlbumApiManager();
     }
 
     @Provides @Singleton

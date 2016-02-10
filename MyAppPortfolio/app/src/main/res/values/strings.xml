@@ -42,4 +42,5 @@
     <string name="title_activity_album">AlbumActivity</string>
     <string name="title_activity_album_photo">AlbumPhotoActivity</string>
     <string name="title_activity_fullsize_photo">FullsizePhotoActivity</string>
+    <string name="title_activity_camera">CameraActivity</string>
 </resources>

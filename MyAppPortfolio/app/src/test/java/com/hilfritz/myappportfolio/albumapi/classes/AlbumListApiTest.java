@@ -3,7 +3,7 @@ package com.hilfritz.myappportfolio.albumapi.classes;
 import android.os.Build;
 
 import com.hilfritz.favoriteplacesmodule.BuildConfig;
-import com.hilfritz.myappportfolio.albumapi.AlbumBaseRequest;
+import com.hilfritz.myappportfolio.albumapi.AlbumApiManager;
 import com.hilfritz.myappportfolio.albumapi.pojo.Album;
 import com.hilfritz.myappportfolio.albumapi.pojo.Photo;
 
@@ -27,12 +27,12 @@ public class AlbumListApiTest {
 
     @Test
     public void getAlbumsTest(){
-        List<Album> list = AlbumBaseRequest.getApi().getAlbums();
+        List<Album> list = AlbumApiManager.getApi().getAlbums();
         assertTrue(list.size() > 0);
-        List<Photo> photolist = AlbumBaseRequest.getApi().getAllPhoto();
+        List<Photo> photolist = AlbumApiManager.getApi().getAllPhoto();
         assertTrue(photolist.size() > 0);
 
-        Photo photo = AlbumBaseRequest.getApi().getSinglePhoto("1");
+        Photo photo = AlbumApiManager.getApi().getSinglePhoto("1");
         assertNotNull(photo);
         assertNotNull(photo.getAlbumId());
         assertNotNull(photo.getId());

@@ -7,12 +7,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
         android:name=".AppMainApplication"
-        tools:replace="android:name"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:name">
 
         <!-- needed provider for PlaceListFragment auto update of list -->
         <provider
@@ -34,7 +34,6 @@
             android:name=".ui.music.search.SearchArtistActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/search_activity" />
-
         <activity
             android:name=".ui.music.topten.TopTenTracksActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -49,14 +48,16 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ui.album.list.AlbumActivity"
-            android:label="@string/title_activity_album">
-        </activity>
+            android:label="@string/title_activity_album"></activity>
         <activity
             android:name=".ui.album.photolist.AlbumPhotoActivity"
             android:label="@string/title_activity_album_photo" />
         <activity
             android:name=".ui.album.fullscreenphoto.FullsizePhotoActivity"
-            android:label="@string/title_activity_fullsize_photo"></activity>
+            android:label="@string/title_activity_fullsize_photo" />
+        <activity
+            android:name=".ui.places.camera.CameraActivity"
+            android:label="@string/title_activity_camera"></activity>
     </application>
 
 </manifest>
