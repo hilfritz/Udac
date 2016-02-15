@@ -24,6 +24,7 @@ public class DimensionGenerator{
 	public static final double HDPI = 1.5;
 	public static final double XHDPI = 2;
 	public static final double XXHDPI = 3;
+	public static final double XXXHDPI = 4;
 
 	public static void main(String[] args){
 		DimensionGenerator dg = new DimensionGenerator();
@@ -43,6 +44,9 @@ public class DimensionGenerator{
 
 		dg.log("XXHDPI");
 		dg.createFile(dg.generateDimensionString(XXHDPI, dg, max),XXHDPI, dg);
+
+		dg.log("XXXHDPI");
+		dg.createFile(dg.generateDimensionString(XXXHDPI, dg, max),XXXHDPI, dg);
 
 	}
 
@@ -69,6 +73,8 @@ private String getFileName(double mode){
 		retVal ="xhdpi";
 	}else if (mode == XXHDPI){
 		retVal ="xxhdpi";
+	}else if (mode == XXXHDPI){
+		retVal ="xxxhdpi";
 	}
 	return retVal;
 }
