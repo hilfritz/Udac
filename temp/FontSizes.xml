@@ -1,0 +1,19 @@
+<resources>
+    
+    <!--
+    Font sizes, general values for different screen sizes
+    https://www.google.com/design/spec/style/typography.html#typography-styles
+    -->
+    <dimen name="fontSizeDisplay4">112sp</dimen>
+    <dimen name="fontSizeDisplay3">56sp</dimen>
+    <dimen name="fontSizeDisplay2">45sp</dimen>
+    <dimen name="fontSizeDisplay1">34sp</dimen>
+
+    <dimen name="fontSizeHeadline">24sp</dimen>
+    <dimen name="fontSizeTitle">21sp</dimen> <!-- should be bold -->
+    <dimen name="fontSizeSubheading">17sp</dimen>
+    <dimen name="fontSizeBody2">15sp</dimen>
+    <dimen name="fontSizeBody1">15sp</dimen> <!-- should be bold -->
+    <dimen name="fontSizeCaption">13sp</dimen>
+    <dimen name="fontSizeButton">15sp</dimen> <!-- should be bold -->
+</resources>
