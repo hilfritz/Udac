@@ -1,6 +1,5 @@
-package com.hilfritz.bootstrap.view.main.userlist;
+package com.hilfritz.bootstrap.view.contactlist.main.userlist;
 
-import android.os.Bundle;
 import android.view.View;
 
 import com.hilfritz.bootstrap.view.BasePresenterView;

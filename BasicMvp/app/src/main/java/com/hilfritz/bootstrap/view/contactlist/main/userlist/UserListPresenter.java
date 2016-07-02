@@ -1,16 +1,14 @@
-package com.hilfritz.bootstrap.view.main.userlist;
+package com.hilfritz.bootstrap.view.contactlist.main.userlist;
 
 import android.app.Activity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.RestApiManager;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
 import com.hilfritz.bootstrap.application.MyApplication;
 import com.hilfritz.bootstrap.view.BasePresenter;
-import com.hilfritz.bootstrap.view.util.LoadingViewUtility;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +40,6 @@ public class UserListPresenter extends BasePresenter{
     Subscription sortUsersSubscription;
     UserListAdapter adapter;
     List<UserWrapper> usersList;
-    LoadingViewUtility loading;
     /**
      *                    <ul>
      *                      <li>0 - no loading</li>

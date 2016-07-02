@@ -1,4 +1,4 @@
-package com.hilfritz.bootstrap.view.main.userlist;
+package com.hilfritz.bootstrap.view.contactlist.main.userlist;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -33,12 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link UserListFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link UserListFragment#newInstance} factory method to
- * create an instance of this fragment.
+ *
  */
 public class UserListFragment extends Fragment implements UserListView{
     private static final String ARG_PARAM1 = "param1";
@@ -100,6 +95,17 @@ public class UserListFragment extends Fragment implements UserListView{
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public void checkIfNewActivity(Bundle savedInstanceState) {
+        if (savedInstanceState==null){
+            logd("new activity/fragment");
+            presenter.setInitialLoad(true);
+        }else {
+            logd("orientation change");
+            presenter.setInitialLoad(false);
         }
     }
 
@@ -243,17 +249,6 @@ public class UserListFragment extends Fragment implements UserListView{
     public void saveDataOnOrientationChange(Bundle savedInstanceState) {
         //savedInstanceState.putInt(EXTRA_VIEW_STATE, -1);
         logd("saveDataOnOrientationChange");
-    }
-
-    @Override
-    public void checkIfNewActivity(Bundle savedInstanceState) {
-        if (savedInstanceState==null){
-            logd("new activity/fragment");
-            presenter.setInitialLoad(true);
-        }else {
-            logd("orientation change");
-            presenter.setInitialLoad(false);
-        }
     }
 
     public void listViewItemClick(final List<UserWrapper> userList){

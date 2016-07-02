@@ -1,4 +1,4 @@
-package com.hilfritz.bootstrap.view.detail;
+package com.hilfritz.bootstrap.view.contactlist.detail;
 
 import android.app.Activity;
 

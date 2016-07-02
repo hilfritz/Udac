@@ -1,4 +1,4 @@
-package com.hilfritz.bootstrap.view.main.userlist;
+package com.hilfritz.bootstrap.view.contactlist.main.userlist;
 
 import android.content.Context;
 import android.view.LayoutInflater;

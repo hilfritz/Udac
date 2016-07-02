@@ -4,8 +4,8 @@ import com.hilfritz.bootstrap.dagger2.module.SessionModule;
 import com.hilfritz.bootstrap.dagger2.module.UtilityModule;
 import com.hilfritz.bootstrap.dagger2.module.ViewPresenterModule;
 import com.hilfritz.bootstrap.dagger2.module.RestApiModule;
-import com.hilfritz.bootstrap.view.main.userlist.UserListFragment;
-import com.hilfritz.bootstrap.view.main.userlist.UserListPresenter;
+import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListFragment;
+import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListPresenter;
 
 import javax.inject.Singleton;
 

@@ -1,8 +1,8 @@
 package com.hilfritz.bootstrap.dagger2.module;
 
 import com.hilfritz.bootstrap.application.MyApplication;
-import com.hilfritz.bootstrap.view.detail.UserDetailFragmentPresenter;
-import com.hilfritz.bootstrap.view.main.userlist.UserListPresenter;
+import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailFragmentPresenter;
+import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListPresenter;
 
 import javax.inject.Singleton;
 

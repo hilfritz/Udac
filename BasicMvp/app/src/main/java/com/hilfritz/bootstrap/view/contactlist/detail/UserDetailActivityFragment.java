@@ -1,4 +1,4 @@
-package com.hilfritz.bootstrap.view.detail;
+package com.hilfritz.bootstrap.view.contactlist.detail;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
