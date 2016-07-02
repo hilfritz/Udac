@@ -32,7 +32,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:1.5.0+'
         /*Below is the important part, also the gradle version used is 1.5.0+ as above
         */
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4' 
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
 
@@ -55,9 +55,10 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
  	/*Below are the current dagger dependencies as the time of writing*/
-    compile 'com.google.dagger:dagger:2.0.2'
-    apt 'com.google.dagger:dagger-compiler:2.0.2'
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    apt 'com.google.dagger:dagger-compiler:2.2'
+    compile 'com.google.dagger:dagger:2.2'
+    provided 'javax.annotation:jsr250-api:1.0'
+
 }
 
 ```
@@ -222,6 +223,7 @@ Hilfritz
 
 ### References:
 
+ * https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2
  * [https://www.youtube.com/watch?v=SKFB8u0-VA0](https://www.youtube.com/watch?v=SKFB8u0-VA0) 
  * [http://code.tutsplus.com/tutorials/dependency-injection-with-dagger-2-on-android--cms-23345](http://code.tutsplus.com/tutorials/dependency-injection-with-dagger-2-on-android--cms-23345)
  * [https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2](https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2) 
