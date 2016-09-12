@@ -7,7 +7,7 @@ import android.os.Bundle;
  * This is the basic interface for all Views in this project's MVP code structure
  */
 
-public interface BasePresenterView {
+public interface BaseView {
     /**
      * IMPORTANT: this must be called in {@link android.app.Fragment#onSaveInstanceState(Bundle)}
      * <br/> do your data saving here!
@@ -57,6 +57,6 @@ public interface BasePresenterView {
      *     }
      * </pre>
      */
-    public void checkIfNewActivity(Bundle savedInstanceState);
+    //public void checkIfNewActivity(Bundle savedInstanceState);
 
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
+import com.hilfritz.bootstrap.view.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +21,7 @@ import butterknife.ButterKnife;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class UserDetailActivityFragment extends Fragment {
+public class UserDetailActivityFragment extends BaseFragment {
 
     public static final String EXTRA_USERWRAPPER = "userWrapperExtra";
     UserDetailFragmentPresenter presenter;

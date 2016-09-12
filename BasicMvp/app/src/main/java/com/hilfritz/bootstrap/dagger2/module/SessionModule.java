@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.hilfritz.bootstrap.application.MyApplication;
 
+import java.util.UUID;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -17,9 +19,14 @@ public class SessionModule {
     MyApplication myApplication;
     Context context;
 
+    String sessionUuid = null;
+
+
     public SessionModule(MyApplication myApplication) {
         this.myApplication = myApplication;
+        sessionUuid = UUID.randomUUID().toString()+"<>"+System.currentTimeMillis();
     }
+
 
 
 }

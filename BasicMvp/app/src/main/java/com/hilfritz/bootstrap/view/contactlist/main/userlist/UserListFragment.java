@@ -20,6 +20,8 @@ import com.hilfritz.bootstrap.api.pojo.UserWrapper;
 import com.hilfritz.bootstrap.application.MyApplication;
 import com.hilfritz.bootstrap.eventbus.deligate.UserListItemClickEventDeligate;
 import com.hilfritz.bootstrap.eventbus.event.SortEvent;
+import com.hilfritz.bootstrap.view.BaseActivity;
+import com.hilfritz.bootstrap.view.BaseFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -35,7 +37,7 @@ import butterknife.ButterKnife;
 /**
  *
  */
-public class UserListFragment extends Fragment implements UserListView{
+public class UserListFragment extends BaseFragment implements UserListView{
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private static final String TAG = "UserListFragment";
@@ -57,6 +59,7 @@ public class UserListFragment extends Fragment implements UserListView{
     @BindView(R.id.userListView)
     ListView listView;
 
+    UserListAdapter adapter;
 
 
     public UserListFragment() {
@@ -90,22 +93,13 @@ public class UserListFragment extends Fragment implements UserListView{
         super.onCreate(savedInstanceState);
         logd("onCreate: ");
         (((MyApplication) getActivity().getApplication()).getAppComponent()).inject(this);
-        checkIfNewActivity(savedInstanceState);
+
+        //**FRAMEWORK
+        checkIfNewActivity(savedInstanceState, presenter);
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public void checkIfNewActivity(Bundle savedInstanceState) {
-        if (savedInstanceState==null){
-            logd("new activity/fragment");
-            presenter.setInitialLoad(true);
-        }else {
-            logd("orientation change");
-            presenter.setInitialLoad(false);
         }
     }
 
@@ -124,6 +118,12 @@ public class UserListFragment extends Fragment implements UserListView{
         View view = inflater.inflate(R.layout.fragment_user_list, container, false);
         ButterKnife.bind(this,view);
 
+        //FRAMEWORK
+        //INITIALIZE THE VIEWS HERE
+        //LISTVIEWS, ADAPTERS, ETC
+        adapter = new UserListAdapter(this.getContext(), presenter.getUsersList());
+        listView.setAdapter(adapter);
+
         return view;
     }
 
@@ -132,38 +132,23 @@ public class UserListFragment extends Fragment implements UserListView{
         super.onViewCreated(view, savedInstanceState);
         logd("onViewCreated: ");
         /**
+         * FRAMEWORK
          * IMPORTANT: PLACE THE INIT HERE
          */
-        presenter.init(getActivity(), this);
-        /**
-         * DO YOUR UI INTERFACE PROCESSES HERE, TAKE NOTE IF IT IS FROM ORIENTATION CHANGE OR
-         * FROM A COMPLETELY NEW FRAGMENT
-         * YOU HAVE TO CHECK IF INITIAL LOAD OR NOT
-         */
-        if (presenter.isInitialLoad())
-            presenter.populate();
-        else{
-            //REPOPULATE LIST
-            //FROM ORIENTATION CHANGE
-            presenter.continuePreviousProcess();
-        }
-    }
+        presenter._init((BaseActivity) getActivity(), this);
 
-    public void showMessage(String str){
-        listView.setVisibility(View.GONE);
-        messageTextView.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
     }
 
     @Override
     public void showMessage(String str, View.OnClickListener onClickListener){
+        logd("showMessage");
         listView.setVisibility(View.GONE);
         messageTextView.setVisibility(View.VISIBLE);
         messageTextView.setText(str);
         if (onClickListener!=null){
             messageTextView.setOnClickListener(onClickListener);
         }
-        progressBar.setVisibility(View.GONE);
+        setLoadingVisibility2();
     }
 
     @Override
@@ -171,21 +156,30 @@ public class UserListFragment extends Fragment implements UserListView{
         logd("showLoading: ");
         listView.setVisibility(View.GONE);
         messageTextView.setVisibility(View.GONE);
-        progressBar.setVisibility(View.VISIBLE);
+        setLoadingVisibility(View.VISIBLE);
     }
+
+    public void setLoadingVisibility(int visibility) {
+        progressBar.setVisibility(visibility);
+    }
+
     @Override
     public void showLoading(String message){
         logd("showLoading() message ");
         listView.setVisibility(View.GONE);
         messageTextView.setVisibility(View.VISIBLE);
         messageTextView.setText(message);
-        progressBar.setVisibility(View.VISIBLE);
+        setLoadingVisibility(View.VISIBLE);
     }
 
     @Override
     public void showList(){
         listView.setVisibility(View.VISIBLE);
         messageTextView.setVisibility(View.GONE);
+        setLoadingVisibility(View.GONE);
+    }
+
+    private void setLoadingVisibility2() {
         progressBar.setVisibility(View.GONE);
     }
 
@@ -220,10 +214,10 @@ public class UserListFragment extends Fragment implements UserListView{
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void sortClickListener(SortEvent sortEvent) {
-        if (sortEvent.getMode()==SortEvent.MODE_SORT_AZ)
-            presenter.sort(UserListPresenter.SORT_AZ);
-        else if (sortEvent.getMode()==SortEvent.MODE_SORT_ZA)
-            presenter.sort(UserListPresenter.SORT_ZA);
+        if (sortEvent.getLoadingType()==UserListPresenter.LOADING_TYPES.SORTING_AZ)
+            presenter.sort(UserListPresenter.LOADING_TYPES.SORTING_AZ);
+        else if (sortEvent.getLoadingType()==UserListPresenter.LOADING_TYPES.SORTING_ZA)
+            presenter.sort(UserListPresenter.LOADING_TYPES.SORTING_ZA);
     }
 
     public ListView getListView() {
@@ -253,6 +247,7 @@ public class UserListFragment extends Fragment implements UserListView{
 
     public void listViewItemClick(final List<UserWrapper> userList){
         logd("listViewItemClick()");
+        /*
         if (userList.size() > 0) {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -263,5 +258,10 @@ public class UserListFragment extends Fragment implements UserListView{
                 }
             });
         }
+        */
+    }
+
+    public void notifyDataSetChanged() {
+        adapter.notifyDataSetChanged();
     }
 }

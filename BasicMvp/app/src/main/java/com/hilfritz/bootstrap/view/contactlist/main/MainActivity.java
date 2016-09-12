@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.eventbus.deligate.SortEventDeligate;
 import com.hilfritz.bootstrap.eventbus.event.UserListItemClickEvent;
+import com.hilfritz.bootstrap.view.BaseActivity;
 import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailActivity;
 import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailActivityFragment;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListFragment;
@@ -20,7 +21,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     public static final String TAG = "MainActivity";
 
     boolean isLandscape = false;
@@ -103,15 +104,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //return super.onOptionsItemSelected(item);
         if (item.getItemId()==R.id.sortAz){
             logd("onOptionsItemSelected() sort AZ");
             SortEventDeligate.sortAz();
-            //userListFragment.sortAz();
         }else if (item.getItemId()==R.id.sortZa){
             logd("onOptionsItemSelected() sort ZA");
             SortEventDeligate.sortZa();
-            //userListFragment.sortZa();
         }
         return true;
     }

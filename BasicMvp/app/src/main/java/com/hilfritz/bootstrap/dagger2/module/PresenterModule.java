@@ -13,12 +13,12 @@ import dagger.Provides;
  * Created by Hilfritz P. Camallere on 6/28/2016.
  */
 @Module
-public class ViewPresenterModule {
+public class PresenterModule {
 
 
     private final MyApplication myApplication;
 
-    public ViewPresenterModule(MyApplication myApplication) {
+    public PresenterModule(MyApplication myApplication) {
         this.myApplication = myApplication;
     }
 

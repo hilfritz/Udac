@@ -8,7 +8,10 @@ import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.RestApiManager;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
 import com.hilfritz.bootstrap.application.MyApplication;
+import com.hilfritz.bootstrap.view.BaseActivity;
+import com.hilfritz.bootstrap.view.BaseFragment;
 import com.hilfritz.bootstrap.view.BasePresenter;
+import com.hilfritz.bootstrap.view.BasePresenterInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,16 +33,20 @@ import rx.schedulers.Schedulers;
  * The presenter for the fragment list
  */
 
-public class UserListPresenter extends BasePresenter{
-    public static final int SORT_AZ = 0;
-    public static final int SORT_ZA = 1;
-
+public class UserListPresenter extends BasePresenter implements BasePresenterInterface{
+    private static final String TAG = "UserListPresenter";
     Activity activity;
     UserListFragment fragment;
     Subscription loadUsersSubscription;
     Subscription sortUsersSubscription;
-    UserListAdapter adapter;
-    List<UserWrapper> usersList;
+    List<UserWrapper> usersList = new ArrayList<UserWrapper>();
+    private long DELAY = 5;
+
+    public enum LOADING_TYPES {
+        REGULAR,
+        SORTING_AZ,
+        SORTING_ZA
+    }
     /**
      *                    <ul>
      *                      <li>0 - no loading</li>
@@ -47,9 +54,7 @@ public class UserListPresenter extends BasePresenter{
      *                      <li>2 - sort za loading</li>
      *                    </ul>
      */
-    int loadingType = 0;
-
-    private static final String TAG = "UserListPresenter";
+    LOADING_TYPES loadingType = LOADING_TYPES.REGULAR;
 
     @Inject RestApiManager apiManager;
 
@@ -57,31 +62,14 @@ public class UserListPresenter extends BasePresenter{
         myApplication.getAppComponent().inject(this);
     }
 
-    public void init(Activity activity, UserListFragment fragment) {
-        logd("init()");
-        this.activity = activity;
-        this.fragment = fragment;
-        if (isInitialLoad()==true) {
-            logd("init() for new activity");
-            loadingType = 0;
-            usersList = new ArrayList<UserWrapper>();
-            adapter = new UserListAdapter(this.fragment.getContext(), usersList);
-        }else{
-            logd("init() for orientation change");
-        }
-        //IMPORTANT
-        //SET YOUR ADAPTERS HERE
-        fragment.getListView().setAdapter(adapter);
-    }
-
-    public void sort(int sortMode){
+    public void sort(LOADING_TYPES sortMode){
         logd( "sort() ");
-        if (sortMode==UserListPresenter.SORT_AZ){
-            showLoading(2);
+        if (sortMode==LOADING_TYPES.SORTING_AZ){
+            showLoading(LOADING_TYPES.SORTING_AZ);
             sortUsersSubscription = getSortAzsubscribable()
                     .subscribe(getSortSubscriber());
-        }else if (sortMode==UserListPresenter.SORT_ZA){
-            showLoading(3);
+        }else if (sortMode==LOADING_TYPES.SORTING_ZA){
+            showLoading(LOADING_TYPES.SORTING_ZA);
             sortUsersSubscription =getSortZasubscribable()
                     .subscribe(getSortSubscriber());
         }
@@ -102,7 +90,7 @@ public class UserListPresenter extends BasePresenter{
         return Observable.just(sortAz())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .delay(5, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .delay(DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 ;
     }
     public Subscriber<Boolean> getSortSubscriber(){
@@ -110,7 +98,7 @@ public class UserListPresenter extends BasePresenter{
         return new Subscriber<Boolean>() {
             @Override
             public void onCompleted() {
-                setLoadingType(0);
+                setLoadingType(null);
                 sortUsersSubscription = null;
             }
 
@@ -127,7 +115,7 @@ public class UserListPresenter extends BasePresenter{
 
             @Override
             public void onNext(Boolean aBoolean) {
-                adapter.notifyDataSetChanged();
+                fragment.notifyDataSetChanged();
                 fragment.showList();
                 logd("getSortSubscriber() onNext()");
             }
@@ -137,7 +125,7 @@ public class UserListPresenter extends BasePresenter{
         return Observable.just(sortZa())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .delay(5, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .delay(DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 ;
 
     }
@@ -157,9 +145,7 @@ public class UserListPresenter extends BasePresenter{
 
     public void populate() {
         Log.d(TAG, "populate()");
-
-        adapter.notifyDataSetChanged();
-        showLoading(1);
+        fragment.notifyDataSetChanged();
         //CALL API
         loadUsersSubscription = apiManager.getUsersSubscribable()
                 .subscribe(getUsersSubscriber());
@@ -174,41 +160,39 @@ public class UserListPresenter extends BasePresenter{
      *                      <li>2 - sort za loading</li>
      *                    </ul>
      */
-    public void showLoading(int loadingType){
+    public void showLoading(LOADING_TYPES loadingType){
         logd("showLoading():"+loadingType);
         setLoadingType(loadingType);
         switch (loadingType){
-            case 0:
-                //no loading
-                break;
-            case 1:
+            case REGULAR:
                 //loading from server
                 fragment.showLoading(fragment.getString(R.string.loading_users));
                 break;
-            case 2:
+            case SORTING_AZ:
                 //sort az
                 fragment.showLoading(fragment.getString(R.string.sort_az_load));
                 break;
-            case 3:
+            case SORTING_ZA:
                 //sort za
                 fragment.showLoading(fragment.getString(R.string.sort_za_load));
                 break;
-            case 4:
-                //no loading
+            default:
+                fragment.setLoadingVisibility(View.GONE);
                 break;
         }
     }
 
     public void logd(String str){
-        Log.d(TAG,str);
+        Log.d(TAG,TAG+">>"+str);
     }
 
     public Subscriber<List<UserWrapper>> getUsersSubscriber(){
         return new Subscriber<List<UserWrapper>>() {
             @Override
             public void onCompleted() {
-                setLoadingType(0);
+                setLoadingType(null);
                 loadUsersSubscription = null;
+                fragment.setLoadingVisibility(View.GONE);
             }
 
             @Override
@@ -254,7 +238,7 @@ public class UserListPresenter extends BasePresenter{
     private void showUsersList(List<UserWrapper> userList) {
         usersList.clear();
         usersList.addAll(userList);
-        adapter.notifyDataSetChanged();
+        fragment.notifyDataSetChanged();
         fragment.listViewItemClick(usersList);
         fragment.showList();
     }
@@ -295,7 +279,7 @@ public class UserListPresenter extends BasePresenter{
          */
 
         if (
-                (getLoadingType()==1 || getLoadingType()==2 || getLoadingType()==3) &&
+                (getLoadingType()==LOADING_TYPES.SORTING_AZ || getLoadingType()==LOADING_TYPES.SORTING_ZA || getLoadingType()==LOADING_TYPES.REGULAR) &&
                         (isOnGoingLoadingUsers()==true || isOnGoingSortingUsers()==true)
                 ) {
             showLoading(getLoadingType());
@@ -319,12 +303,44 @@ public class UserListPresenter extends BasePresenter{
 
     }
 
-    public int getLoadingType() {
+    public LOADING_TYPES getLoadingType() {
         return loadingType;
     }
 
-    public void setLoadingType(int loadingType) {
+    public void setLoadingType(LOADING_TYPES loadingType) {
         logd("setLoadingType:"+loadingType);
         this.loadingType = loadingType;
+    }
+
+    @Override
+    public void _init(BaseActivity activity, BaseFragment fragment) {
+        this.activity = activity;
+        this.fragment = (UserListFragment) fragment;
+        if (isInitialLoad()==true) {
+            logd("init() for new activity");
+            loadingType = LOADING_TYPES.REGULAR;
+            usersList.clear();
+            //FRAMEWORK
+            /**
+             * DO YOUR UI INTERFACE PROCESSES HERE, TAKE NOTE IF IT IS FROM ORIENTATION CHANGE OR
+             * FROM A COMPLETELY NEW FRAGMENT
+             * YOU HAVE TO CHECK IF INITIAL LOAD OR NOT
+             */
+            populate();
+        }else{
+            logd("init() for orientation change");
+            if (getLoadingType()==null)
+                ((UserListFragment) fragment).setLoadingVisibility(View.GONE);
+        }
+
+    }
+
+    public List<UserWrapper> getUsersList() {
+        return usersList;
+    }
+
+    @Override
+    public void _reset() {
+
     }
 }

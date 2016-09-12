@@ -2,8 +2,9 @@ package com.hilfritz.bootstrap.dagger2.component;
 
 import com.hilfritz.bootstrap.dagger2.module.SessionModule;
 import com.hilfritz.bootstrap.dagger2.module.UtilityModule;
-import com.hilfritz.bootstrap.dagger2.module.ViewPresenterModule;
+import com.hilfritz.bootstrap.dagger2.module.PresenterModule;
 import com.hilfritz.bootstrap.dagger2.module.RestApiModule;
+import com.hilfritz.bootstrap.view.BaseActivity;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListFragment;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListPresenter;
 
@@ -17,12 +18,15 @@ import dagger.Component;
 @Singleton
 @Component(modules = {
         RestApiModule.class,
-        ViewPresenterModule.class,
+        PresenterModule.class,
         UtilityModule.class,
         SessionModule.class,
 })
 public interface AppComponent {
     void inject(UserListFragment fragment);
     void inject(UserListPresenter presenter);
+
+
+    void inject(BaseActivity baseActivity);
 
 }
