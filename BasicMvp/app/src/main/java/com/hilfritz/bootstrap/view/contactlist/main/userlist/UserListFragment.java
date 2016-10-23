@@ -11,14 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
 import com.hilfritz.bootstrap.application.MyApplication;
 import com.hilfritz.bootstrap.eventbus.event.SortEvent;
-import com.hilfritz.bootstrap.view.BaseActivity;
-import com.hilfritz.bootstrap.view.BaseFragment;
+import com.hilfritz.bootstrap.framework.BaseActivity;
+import com.hilfritz.bootstrap.framework.BaseFragment;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.helper.UserListAdapter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -151,14 +150,6 @@ public class UserListFragment extends BaseFragment implements UserListView{
         setLoadingVisibility2();
     }
 
-    @Override
-    public void showLoading(){
-        logd("showLoading: ");
-        listView.setVisibility(View.GONE);
-        messageTextView.setVisibility(View.GONE);
-        setLoadingVisibility(View.VISIBLE);
-    }
-
     public void setLoadingVisibility(int visibility) {
         progressBar.setVisibility(visibility);
     }
@@ -223,12 +214,6 @@ public class UserListFragment extends BaseFragment implements UserListView{
 
     private void logd(String msg) {
         Log.d(TAG, TAG+">> "+msg);
-    }
-
-    @Override
-    public void saveDataOnOrientationChange(Bundle savedInstanceState) {
-        //savedInstanceState.putInt(EXTRA_VIEW_STATE, -1);
-        logd("saveDataOnOrientationChange");
     }
 
     public void listViewItemClick(final List<UserWrapper> userList){

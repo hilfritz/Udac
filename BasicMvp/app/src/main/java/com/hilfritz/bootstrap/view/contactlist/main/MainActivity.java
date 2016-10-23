@@ -1,7 +1,6 @@
 package com.hilfritz.bootstrap.view.contactlist.main;
 
 import android.content.res.Configuration;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,7 +9,7 @@ import android.view.MenuItem;
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.eventbus.deligate.SortEventDeligate;
 import com.hilfritz.bootstrap.eventbus.event.UserListItemClickEvent;
-import com.hilfritz.bootstrap.view.BaseActivity;
+import com.hilfritz.bootstrap.framework.BaseActivity;
 import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailActivity;
 import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailActivityFragment;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListFragment;

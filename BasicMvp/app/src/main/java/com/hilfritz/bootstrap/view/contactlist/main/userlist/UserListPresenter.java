@@ -8,10 +8,10 @@ import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.RestApiManager;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
 import com.hilfritz.bootstrap.application.MyApplication;
-import com.hilfritz.bootstrap.view.BaseActivity;
-import com.hilfritz.bootstrap.view.BaseFragment;
-import com.hilfritz.bootstrap.view.BasePresenter;
-import com.hilfritz.bootstrap.view.BasePresenterInterface;
+import com.hilfritz.bootstrap.framework.BaseActivity;
+import com.hilfritz.bootstrap.framework.BaseFragment;
+import com.hilfritz.bootstrap.framework.BasePresenter;
+import com.hilfritz.bootstrap.framework.BasePresenterInterface;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -341,7 +341,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
     }
 
     @Override
-    public void _reset() {
+    public void bpi_reset() {
 
     }
 }

@@ -1,4 +1,4 @@
-package com.hilfritz.bootstrap.view;
+package com.hilfritz.bootstrap.framework;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

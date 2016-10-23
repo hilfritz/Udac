@@ -1,4 +1,4 @@
-package com.hilfritz.bootstrap.view;
+package com.hilfritz.bootstrap.framework;
 
 /**
  * Created by Hilfritz P. Camallere on 8/20/2016.

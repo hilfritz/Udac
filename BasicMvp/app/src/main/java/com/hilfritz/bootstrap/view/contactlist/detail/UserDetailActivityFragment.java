@@ -1,7 +1,6 @@
 package com.hilfritz.bootstrap.view.contactlist.detail;
 
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
-import com.hilfritz.bootstrap.view.BaseFragment;
+import com.hilfritz.bootstrap.framework.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
