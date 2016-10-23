@@ -1,7 +1,7 @@
 package com.hilfritz.bootstrap.util;
 
 /**
- * Created by hilfritz on 10/23/16.
+ * Created by hilfritz on 8/1/16.
  */
 
 public class StringUtil {

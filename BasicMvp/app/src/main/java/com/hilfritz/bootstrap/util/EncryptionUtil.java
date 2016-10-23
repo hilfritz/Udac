@@ -4,6 +4,9 @@ import com.scottyab.aescrypt.AESCrypt;
 
 import java.security.GeneralSecurityException;
 
+/**
+ * Created by hilfritz on 8/1/16.
+ */
 public class EncryptionUtil {
 
     private static String KEY_TAG = "sample";
