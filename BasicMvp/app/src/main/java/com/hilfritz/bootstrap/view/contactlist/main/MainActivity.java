@@ -2,6 +2,7 @@ package com.hilfritz.bootstrap.view.contactlist.main;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,8 @@ public class MainActivity extends BaseActivity {
 
     UserListFragment userListFragment;
     UserDetailActivityFragment userDetailActivityFragment;
+    FragmentManager supportFragmentManager;
+
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -51,7 +54,7 @@ public class MainActivity extends BaseActivity {
 
         //get the fragment
         //need to add this here because the orientation can loose the fragment if this is placed on "onCreate()"
-        userListFragment = (UserListFragment)getSupportFragmentManager().findFragmentById(R.id.userListFragment);
+        userListFragment = (UserListFragment) supportFragmentManager.findFragmentById(R.id.userListFragment);
 
     }
 
@@ -65,7 +68,7 @@ public class MainActivity extends BaseActivity {
         }else{
             logd("onListItemClick() is landscape");
             //SHOw THe DETAIL ON THE RIGHT SIDE
-            userDetailActivityFragment = (UserDetailActivityFragment) getSupportFragmentManager().findFragmentById(R.id.userDetailFragment);
+            userDetailActivityFragment = (UserDetailActivityFragment) supportFragmentManager.findFragmentById(R.id.userDetailFragment);
             userDetailActivityFragment.populate(userListItemClickEvent.getUserWrapper());
         }
     }
@@ -81,8 +84,8 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         logd("onCreate: ");
         ButterKnife.bind(this);
+        supportFragmentManager = getSupportFragmentManager();
         checkScreenOrientation();
-
     }
 
     private void checkScreenOrientation() {

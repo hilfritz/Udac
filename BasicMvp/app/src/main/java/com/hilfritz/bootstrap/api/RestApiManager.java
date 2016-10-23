@@ -1,6 +1,7 @@
 package com.hilfritz.bootstrap.api;
 
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
+import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListPresenter;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -9,6 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -37,7 +39,17 @@ public class RestApiManager {
         return api.getUsersObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .delay(5, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .delay(UserListPresenter.DELAY, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 ;
+    }
+
+    /**
+     *
+     * @param subscription Subscription - this is the rxjava subscription object
+     */
+    public static void unsubscribe(Subscription subscription) {
+        if (subscription!=null && subscription.isUnsubscribed()==false){
+            subscription.unsubscribe();
+        }
     }
 }

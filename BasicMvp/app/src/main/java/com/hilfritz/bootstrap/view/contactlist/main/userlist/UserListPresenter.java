@@ -40,7 +40,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
     Subscription loadUsersSubscription;
     Subscription sortUsersSubscription;
     List<UserWrapper> usersList = new ArrayList<UserWrapper>();
-    private long DELAY = 5;
+    public static final long DELAY = 200;
 
     public enum LOADING_TYPES {
         REGULAR,
@@ -91,7 +91,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
         return Observable.just(sortAz())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .delay(DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .delay(UserListPresenter.DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 ;
     }
     public Subscriber<Boolean> getSortSubscriber(){
@@ -126,7 +126,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
         return Observable.just(sortZa())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .delay(DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .delay(UserListPresenter.DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 ;
 
     }

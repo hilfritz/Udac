@@ -73,19 +73,6 @@ public class UserListFragment extends BaseFragment implements UserListView{
     }
 
     @Override
-    public void onResume() {
-        logd("onResume: ");
-        super.onResume();
-        EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        EventBus.getDefault().unregister(this);
-    }
-
-    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         logd("onCreate: ");
@@ -99,14 +86,6 @@ public class UserListFragment extends BaseFragment implements UserListView{
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-    }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -135,6 +114,24 @@ public class UserListFragment extends BaseFragment implements UserListView{
          * IMPORTANT: PLACE THE INIT HERE
          */
         presenter.bpi_init((BaseActivity) getActivity(), this);
+
+    }
+
+    @Override
+    public void onResume() {
+        logd("onResume: ");
+        super.onResume();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EventBus.getDefault().unregister(this);
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
 
     }
 
