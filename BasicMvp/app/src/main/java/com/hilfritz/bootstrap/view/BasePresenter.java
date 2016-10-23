@@ -14,13 +14,13 @@ public class BasePresenter {
      */
     boolean initialLoad = true;
 
-    public boolean isInitialLoad() {
-        Log.d(TAG, "isInitialLoad: "+((initialLoad)?"true":"false"));
+    public boolean bp_isInitialLoad() {
+        Log.d(TAG, "bp_isInitialLoad: "+((initialLoad)?"true":"false"));
         return initialLoad;
     }
 
-    public void setInitialLoad(boolean initialLoad) {
-        Log.d(TAG, "setInitialLoad: set to:"+((initialLoad)?"true":"false"));
+    public void bp_setInitialLoad(boolean initialLoad) {
+        Log.d(TAG, "bp_setInitialLoad: set to:"+((initialLoad)?"true":"false"));
         this.initialLoad = initialLoad;
     }
 

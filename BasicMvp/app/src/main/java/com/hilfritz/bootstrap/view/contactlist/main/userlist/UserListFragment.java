@@ -92,8 +92,8 @@ public class UserListFragment extends BaseFragment implements UserListView{
         logd("onCreate: ");
         (((MyApplication) getActivity().getApplication()).getAppComponent()).inject(this);
 
-        //**FRAMEWORK
-        checkIfNewActivity(savedInstanceState, presenter);
+        /**IMPORTANT: FRAMEWORK METHOD**/
+        bf_checkIfNewActivity(savedInstanceState, presenter);
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -116,7 +116,7 @@ public class UserListFragment extends BaseFragment implements UserListView{
         View view = inflater.inflate(R.layout.fragment_user_list, container, false);
         ButterKnife.bind(this,view);
 
-        //FRAMEWORK
+        /**IMPORTANT: FRAMEWORK METHOD**/
         //INITIALIZE THE VIEWS HERE
         //LISTVIEWS, ADAPTERS, ETC
         adapter = new UserListAdapter(this.getContext(), presenter.getUsersList());
@@ -129,11 +129,13 @@ public class UserListFragment extends BaseFragment implements UserListView{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         logd("onViewCreated: ");
+
+        /**IMPORTANT: FRAMEWORK METHOD**/
         /**
          * FRAMEWORK
          * IMPORTANT: PLACE THE INIT HERE
          */
-        presenter._init((BaseActivity) getActivity(), this);
+        presenter.bpi_init((BaseActivity) getActivity(), this);
 
     }
 
@@ -181,15 +183,6 @@ public class UserListFragment extends BaseFragment implements UserListView{
         progressBar.setVisibility(View.GONE);
     }
 
-    @Override
-    public void sortZa() {
-
-    }
-
-    @Override
-    public void sortAz() {
-
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -230,11 +223,6 @@ public class UserListFragment extends BaseFragment implements UserListView{
 
     private void logd(String msg) {
         Log.d(TAG, TAG+">> "+msg);
-    }
-
-    @Override
-    public void toast(String str){
-        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
     }
 
     @Override

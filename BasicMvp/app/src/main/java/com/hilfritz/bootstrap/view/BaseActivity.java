@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.hilfritz.bootstrap.application.MyApplication;
-
+/**IMPORTANT: FRAMEWORK CLASS**/
 /**
  * Created by Hilfritz P. Camallere on 8/20/2016.
  */
@@ -14,11 +14,18 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ((MyApplication)getApplication()).getAppComponent().inject(this);
     }
-    public void checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
+
+    /**
+     * IMPORTANT: FRAMEWORK METHOD
+     * Called whenever onCreate() is called
+     * @param savedInstanceState Bundle
+     * @param presenter {@link BasePresenter} - this parameter must be a subclass of
+     */
+    public void ba_checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
         if (savedInstanceState==null){
-            presenter.setInitialLoad(true);
+            presenter.bp_setInitialLoad(true);
         }else {
-            presenter.setInitialLoad(false);
+            presenter.bp_setInitialLoad(false);
         }
     }
 }

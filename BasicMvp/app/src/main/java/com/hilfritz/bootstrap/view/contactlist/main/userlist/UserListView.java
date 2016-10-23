@@ -12,10 +12,5 @@ public interface UserListView extends BaseView {
 
     public void showMessage(String str, View.OnClickListener clickListener);
     public void showLoading(String str);
-    public void showLoading();
     public void showList();
-    public void sortZa();
-    public void sortAz();
-    public void toast(String str);
-
 }

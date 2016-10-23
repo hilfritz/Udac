@@ -4,8 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-
+/**IMPORTANT: FRAMEWORK CLASS**/
 /**
+ *
  * Created by Hilfritz P. Camallere on 8/20/2016.
  */
 public class BaseFragment extends Fragment {
@@ -15,14 +16,20 @@ public class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    public void checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
-        Log.d(TAG, "checkIfNewActivity: ");
+    /**
+     * IMPORTANT: FRAMEWORK METHOD
+     * Called whenever onCreate() is called
+     * @param savedInstanceState Bundle
+     * @param presenter {@link BasePresenter} - this parameter must be a subclass of
+     */
+    public void bf_checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
+        Log.d(TAG, "bf_checkIfNewActivity: ");
         if (savedInstanceState==null){
-            Log.d(TAG, "checkIfNewActivity: presenter INITIAL LOAD");
-            presenter.setInitialLoad(true);
+            Log.d(TAG, "bf_checkIfNewActivity: presenter INITIAL LOAD");
+            presenter.bp_setInitialLoad(true);
         }else {
-            Log.d(TAG, "checkIfNewActivity: presenter from ROTATION");
-            presenter.setInitialLoad(false);
+            Log.d(TAG, "bf_checkIfNewActivity: presenter from ROTATION");
+            presenter.bp_setInitialLoad(false);
         }
     }
 }

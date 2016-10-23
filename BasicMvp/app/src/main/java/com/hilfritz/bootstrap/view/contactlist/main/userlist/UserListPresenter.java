@@ -59,6 +59,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
     @Inject RestApiManager apiManager;
 
     public UserListPresenter(MyApplication myApplication){
+        //INITIALIZE INJECTION
         myApplication.getAppComponent().inject(this);
     }
 
@@ -313,10 +314,10 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
     }
 
     @Override
-    public void _init(BaseActivity activity, BaseFragment fragment) {
+    public void bpi_init(BaseActivity activity, BaseFragment fragment) {
         this.activity = activity;
         this.fragment = (UserListFragment) fragment;
-        if (isInitialLoad()==true) {
+        if (bp_isInitialLoad()==true) {
             logd("init() for new activity");
             loadingType = LOADING_TYPES.REGULAR;
             usersList.clear();

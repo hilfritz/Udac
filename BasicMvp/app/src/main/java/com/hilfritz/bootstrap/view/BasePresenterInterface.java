@@ -5,11 +5,15 @@ package com.hilfritz.bootstrap.view;
  */
 public interface BasePresenterInterface {
     /**
-     * IMPORTANT: CALL THIS IN Activity#OnCreate()
+     * IMPORTANT: CALL THIS IN
+     * <ul>
+     *     <li>Activity#OnCreate()</li>
+     *     <li>Fragment#onViewCreated</li>
+     * </ul>
      * @param activity
      * @param fragment
      */
-    public void _init(BaseActivity activity, BaseFragment fragment);
+    public void bpi_init(BaseActivity activity, BaseFragment fragment);
 
-    public void _reset();
+    public void bpi_reset();
 }
