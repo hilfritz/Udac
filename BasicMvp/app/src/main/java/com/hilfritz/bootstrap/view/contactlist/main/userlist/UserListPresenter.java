@@ -91,7 +91,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
         return Observable.just(sortAz())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .delay(UserListPresenter.DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .delay(UserListPresenter.DELAY, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 ;
     }
     public Subscriber<Boolean> getSortSubscriber(){
@@ -126,7 +126,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
         return Observable.just(sortZa())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .delay(UserListPresenter.DELAY, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .delay(UserListPresenter.DELAY, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 ;
 
     }
