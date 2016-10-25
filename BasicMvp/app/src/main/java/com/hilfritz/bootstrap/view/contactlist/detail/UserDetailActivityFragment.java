@@ -1,7 +1,7 @@
 package com.hilfritz.bootstrap.view.contactlist.detail;
 
-import android.support.annotation.Nullable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +12,11 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
+import com.hilfritz.bootstrap.application.MyApplication;
+import com.hilfritz.bootstrap.framework.BaseActivity;
 import com.hilfritz.bootstrap.framework.BaseFragment;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +27,7 @@ import butterknife.ButterKnife;
 public class UserDetailActivityFragment extends BaseFragment {
 
     public static final String EXTRA_USERWRAPPER = "userWrapperExtra";
+    @Inject
     UserDetailFragmentPresenter presenter;
     @BindView(R.id.messageTextView)
     TextView messageTextView;
@@ -47,7 +52,7 @@ public class UserDetailActivityFragment extends BaseFragment {
 
     @BindView(R.id.value5)
     TextView value5;
-
+    @Inject
     Gson gson;
 
 
@@ -57,8 +62,9 @@ public class UserDetailActivityFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        (((MyApplication) getActivity().getApplication()).getAppComponent()).inject(this);
         presenter = new UserDetailFragmentPresenter(getActivity(), this);
-        gson = new Gson();
+
     }
 
     @Override
@@ -72,8 +78,11 @@ public class UserDetailActivityFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        presenter.bpi_init((BaseActivity) getActivity(), this);
         messageTextView.setText("...");
         linearLayout.setVisibility(View.GONE);
+        /*
         //IF NEW ACTIVITY
         if (getActivity().getIntent().getStringExtra(UserDetailActivityFragment.EXTRA_USERWRAPPER) != null) {
             String extra = getActivity().getIntent().getStringExtra(UserDetailActivityFragment.EXTRA_USERWRAPPER);
@@ -81,8 +90,8 @@ public class UserDetailActivityFragment extends BaseFragment {
             presenter.populate(user);
         }else{
             //IF INSIDE THe MAIN ACTIVITY
-
         }
+        */
     }
 
     public UserWrapper getUserWrapper() {

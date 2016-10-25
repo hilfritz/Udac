@@ -5,6 +5,8 @@ import com.hilfritz.bootstrap.dagger2.module.UtilityModule;
 import com.hilfritz.bootstrap.dagger2.module.PresenterModule;
 import com.hilfritz.bootstrap.dagger2.module.RestApiModule;
 import com.hilfritz.bootstrap.framework.BaseActivity;
+import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailActivityFragment;
+import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailFragmentPresenter;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListFragment;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListPresenter;
 
@@ -25,6 +27,9 @@ import dagger.Component;
 public interface AppComponent {
     void inject(UserListFragment fragment);
     void inject(UserListPresenter presenter);
+
+    void inject(UserDetailActivityFragment fragment);
+    void inject(UserDetailFragmentPresenter presenter);
 
 
     void inject(BaseActivity baseActivity);

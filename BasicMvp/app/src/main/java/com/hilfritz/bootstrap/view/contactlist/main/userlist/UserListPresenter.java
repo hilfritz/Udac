@@ -315,8 +315,12 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
 
     @Override
     public void bpi_init(BaseActivity activity, BaseFragment fragment) {
+
+        //INITIALIZE INJECTION
+        ((MyApplication)(activity.getApplication())).getAppComponent().inject(this);
         this.activity = activity;
         this.fragment = (UserListFragment) fragment;
+
         if (bp_isInitialLoad()==true) {
             logd("init() for new activity");
             loadingType = LOADING_TYPES.REGULAR;
