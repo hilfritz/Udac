@@ -314,14 +314,14 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
     }
 
     @Override
-    public void bpi_init(BaseActivity activity, BaseFragment fragment) {
+    public void __fmwk_bpi_init(BaseActivity activity, BaseFragment fragment) {
 
         //INITIALIZE INJECTION
         ((MyApplication)(activity.getApplication())).getAppComponent().inject(this);
         this.activity = activity;
         this.fragment = (UserListFragment) fragment;
 
-        if (bp_isInitialLoad()==true) {
+        if (__fmwk_bp_isInitialLoad()==true) {
             logd("init() for new activity");
             loadingType = LOADING_TYPES.REGULAR;
             usersList.clear();
@@ -345,7 +345,7 @@ public class UserListPresenter extends BasePresenter implements BasePresenterInt
     }
 
     @Override
-    public void bpi_reset() {
+    public void __fmwk_bpi_reset() {
 
     }
 }

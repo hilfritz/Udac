@@ -38,7 +38,7 @@ public class UserDetailFragmentPresenter extends BasePresenter implements BasePr
     }
 
     @Override
-    public void bpi_init(BaseActivity activity, BaseFragment fragment) {
+    public void __fmwk_bpi_init(BaseActivity activity, BaseFragment fragment) {
 
         //INITIALIZE
         this.activity = activity;
@@ -62,7 +62,7 @@ public class UserDetailFragmentPresenter extends BasePresenter implements BasePr
     }
 
     @Override
-    public void bpi_reset() {
+    public void __fmwk_bpi_reset() {
 
     }
 }

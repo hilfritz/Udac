@@ -82,7 +82,7 @@ public class UserDetailActivityFragment extends BaseFragment {
          * FRAMEWORK
          * IMPORTANT: PLACE THE INIT HERE
          */
-        presenter.bpi_init((BaseActivity) getActivity(), this);
+        presenter.__fmwk_bpi_init((BaseActivity) getActivity(), this);
         messageTextView.setText("...");
         linearLayout.setVisibility(View.GONE);
 

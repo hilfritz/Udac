@@ -79,7 +79,7 @@ public class UserListFragment extends BaseFragment implements UserListView{
         (((MyApplication) getActivity().getApplication()).getAppComponent()).inject(this);
 
         /**IMPORTANT: FRAMEWORK METHOD**/
-        bf_checkIfNewActivity(savedInstanceState, presenter);
+        __fmwk_bf_checkIfNewActivity(savedInstanceState, presenter);
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -113,7 +113,7 @@ public class UserListFragment extends BaseFragment implements UserListView{
          * FRAMEWORK
          * IMPORTANT: PLACE THE INIT HERE
          */
-        presenter.bpi_init((BaseActivity) getActivity(), this);
+        presenter.__fmwk_bpi_init((BaseActivity) getActivity(), this);
 
     }
 

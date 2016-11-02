@@ -22,14 +22,14 @@ public class BaseFragment extends Fragment {
      * @param savedInstanceState Bundle
      * @param presenter {@link BasePresenter} - this parameter must be a subclass of
      */
-    public void bf_checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
+    public void __fmwk_bf_checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
         Log.d(TAG, "bf_checkIfNewActivity: ");
         if (savedInstanceState==null){
             Log.d(TAG, "bf_checkIfNewActivity: presenter INITIAL LOAD");
-            presenter.bp_setInitialLoad(true);
+            presenter.__fmwk_bp_setInitialLoad(true);
         }else {
             Log.d(TAG, "bf_checkIfNewActivity: presenter from ROTATION");
-            presenter.bp_setInitialLoad(false);
+            presenter.__fmwk_bp_setInitialLoad(false);
         }
     }
 }

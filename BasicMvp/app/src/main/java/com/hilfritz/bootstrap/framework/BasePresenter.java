@@ -14,12 +14,12 @@ public class BasePresenter {
      */
     boolean initialLoad = true;
 
-    public boolean bp_isInitialLoad() {
+    public boolean __fmwk_bp_isInitialLoad() {
         Log.d(TAG, "bp_isInitialLoad: "+((initialLoad)?"true":"false"));
         return initialLoad;
     }
 
-    public void bp_setInitialLoad(boolean initialLoad) {
+    public void __fmwk_bp_setInitialLoad(boolean initialLoad) {
         Log.d(TAG, "bp_setInitialLoad: set to:"+((initialLoad)?"true":"false"));
         this.initialLoad = initialLoad;
     }

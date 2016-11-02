@@ -21,11 +21,11 @@ public class BaseActivity extends AppCompatActivity {
      * @param savedInstanceState Bundle
      * @param presenter {@link BasePresenter} - this parameter must be a subclass of
      */
-    public void ba_checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
+    public void __fmwk_ba_checkIfNewActivity(Bundle savedInstanceState, BasePresenter presenter) {
         if (savedInstanceState==null){
-            presenter.bp_setInitialLoad(true);
+            presenter.__fmwk_bp_setInitialLoad(true);
         }else {
-            presenter.bp_setInitialLoad(false);
+            presenter.__fmwk_bp_setInitialLoad(false);
         }
     }
 }
