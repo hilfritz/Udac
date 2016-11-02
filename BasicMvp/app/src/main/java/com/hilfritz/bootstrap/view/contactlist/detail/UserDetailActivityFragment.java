@@ -63,7 +63,6 @@ public class UserDetailActivityFragment extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         (((MyApplication) getActivity().getApplication()).getAppComponent()).inject(this);
-        presenter = new UserDetailFragmentPresenter(getActivity(), this);
 
     }
 
@@ -78,20 +77,28 @@ public class UserDetailActivityFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        /**IMPORTANT: FRAMEWORK METHOD**/
+        /**
+         * FRAMEWORK
+         * IMPORTANT: PLACE THE INIT HERE
+         */
         presenter.bpi_init((BaseActivity) getActivity(), this);
         messageTextView.setText("...");
         linearLayout.setVisibility(View.GONE);
-        /*
+
         //IF NEW ACTIVITY
-        if (getActivity().getIntent().getStringExtra(UserDetailActivityFragment.EXTRA_USERWRAPPER) != null) {
-            String extra = getActivity().getIntent().getStringExtra(UserDetailActivityFragment.EXTRA_USERWRAPPER);
+        String extra = getUserWrapperIntentExtra();
+        if (extra != null) {
             UserWrapper user =  gson.fromJson( extra, UserWrapper.class );
             presenter.populate(user);
         }else{
             //IF INSIDE THe MAIN ACTIVITY
         }
-        */
+
+    }
+
+    private String getUserWrapperIntentExtra() {
+        return getActivity().getIntent().getStringExtra(UserDetailActivityFragment.EXTRA_USERWRAPPER);
     }
 
     public UserWrapper getUserWrapper() {

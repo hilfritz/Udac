@@ -1,6 +1,7 @@
 package com.hilfritz.bootstrap.view.contactlist.detail;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.view.View;
 import com.google.gson.Gson;
 import com.hilfritz.bootstrap.R;
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
+import com.hilfritz.bootstrap.application.MyApplication;
 import com.hilfritz.bootstrap.framework.BaseActivity;
 
 import javax.inject.Inject;
@@ -27,6 +29,7 @@ public class UserDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        (((MyApplication) getApplication()).getAppComponent()).inject(this);
         setContentView(R.layout.activity_user_detail);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
@@ -41,7 +44,7 @@ public class UserDetailActivity extends BaseActivity {
         });
     }
 
-    public static void start(Activity activity, UserWrapper user, Gson gson){
+    public static void start(Context activity, UserWrapper user, Gson gson){
         Intent intent = new Intent(activity, UserDetailActivity.class);
         intent.putExtra(UserDetailActivityFragment.EXTRA_USERWRAPPER, gson.toJson(user));
         activity.startActivity(intent);

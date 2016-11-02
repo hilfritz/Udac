@@ -5,8 +5,10 @@ import com.hilfritz.bootstrap.dagger2.module.UtilityModule;
 import com.hilfritz.bootstrap.dagger2.module.PresenterModule;
 import com.hilfritz.bootstrap.dagger2.module.RestApiModule;
 import com.hilfritz.bootstrap.framework.BaseActivity;
+import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailActivity;
 import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailActivityFragment;
 import com.hilfritz.bootstrap.view.contactlist.detail.UserDetailFragmentPresenter;
+import com.hilfritz.bootstrap.view.contactlist.main.MainActivity;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListFragment;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListPresenter;
 
@@ -33,5 +35,7 @@ public interface AppComponent {
 
 
     void inject(BaseActivity baseActivity);
+    void inject(MainActivity activity);
+    void inject(UserDetailActivity activity);
 
 }

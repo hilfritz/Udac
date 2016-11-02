@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.gson.Gson;
 import com.hilfritz.bootstrap.R;
+import com.hilfritz.bootstrap.application.MyApplication;
 import com.hilfritz.bootstrap.eventbus.deligate.SortEventDeligate;
 import com.hilfritz.bootstrap.eventbus.event.UserListItemClickEvent;
 import com.hilfritz.bootstrap.framework.BaseActivity;
@@ -19,6 +21,8 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
@@ -29,7 +33,8 @@ public class MainActivity extends BaseActivity {
     UserListFragment userListFragment;
     UserDetailActivityFragment userDetailActivityFragment;
     FragmentManager supportFragmentManager;
-
+    @Inject
+    Gson gson;
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -64,7 +69,7 @@ public class MainActivity extends BaseActivity {
         if (isLandscape ==false){
             logd("onListItemClick() portrait");
             //START A NEW ACTIVITY FOR DETAILS
-            UserDetailActivity.start(MainActivity.this, userListItemClickEvent.getUserWrapper());
+            UserDetailActivity.start(MainActivity.this, userListItemClickEvent.getUserWrapper(), gson);
         }else{
             logd("onListItemClick() is landscape");
             //SHOw THe DETAIL ON THE RIGHT SIDE
@@ -81,6 +86,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        (((MyApplication) getApplication()).getAppComponent()).inject(this);
+
         setContentView(R.layout.activity_main);
         logd("onCreate: ");
         ButterKnife.bind(this);
