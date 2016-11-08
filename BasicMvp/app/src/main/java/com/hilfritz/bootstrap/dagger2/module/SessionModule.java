@@ -6,10 +6,7 @@ import com.hilfritz.bootstrap.application.MyApplication;
 
 import java.util.UUID;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Created by Hilfritz P. Camallere on 7/2/2016.
@@ -20,7 +17,6 @@ public class SessionModule {
     Context context;
 
     String sessionUuid = null;
-
 
     public SessionModule(MyApplication myApplication) {
         this.myApplication = myApplication;
