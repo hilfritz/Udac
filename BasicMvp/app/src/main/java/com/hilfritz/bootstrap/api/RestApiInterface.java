@@ -1,6 +1,7 @@
 package com.hilfritz.bootstrap.api;
 
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
+import com.hilfritz.bootstrap.api.pojo.photo.PhotoWrapper;
 
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface RestApiInterface {
 
     @GET(RestApiManager.USERS_URL)
     Observable<List<UserWrapper>> getUsersObservable();
+
+    @GET(RestApiManager.PHOTO_URL)
+    Observable<List<PhotoWrapper>> getPhotosObservable();
 }

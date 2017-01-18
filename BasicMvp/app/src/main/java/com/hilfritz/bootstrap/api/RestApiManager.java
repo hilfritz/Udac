@@ -1,6 +1,7 @@
 package com.hilfritz.bootstrap.api;
 
 import com.hilfritz.bootstrap.api.pojo.UserWrapper;
+import com.hilfritz.bootstrap.api.pojo.photo.PhotoWrapper;
 import com.hilfritz.bootstrap.view.contactlist.main.userlist.UserListPresenter;
 
 import java.util.List;
@@ -22,6 +23,7 @@ import rx.schedulers.Schedulers;
 public class RestApiManager {
     public static final String BASE_URL = "http://jsonplaceholder.typicode.com";
     public static final String USERS_URL = BASE_URL+"/users";
+    public static final String PHOTO_URL = BASE_URL+"/photos";
     RestApiInterface api ;
     Retrofit retrofit;
 
@@ -37,6 +39,14 @@ public class RestApiManager {
 
     public Observable<List<UserWrapper>> getUsersSubscribable(){
         return api.getUsersObservable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .delay(UserListPresenter.DELAY, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                ;
+    }
+
+    public Observable<List<PhotoWrapper>> getPhotosSubscribable(){
+        return api.getPhotosObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .delay(UserListPresenter.DELAY, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())

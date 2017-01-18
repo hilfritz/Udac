@@ -69,4 +69,5 @@ dependencies {
      * SHARED PREF LIBRARY
      */
     compile 'com.pixplicity.easyprefs:library:1.8.1@aar'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 }
